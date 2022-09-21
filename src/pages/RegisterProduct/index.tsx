@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { InputSinve, Navbar } from '../../components';
 import {
-  RegisterContainer, Title, ProductContainer, TopProductContainer,
+  ButtonSinve, InputSinve, Navbar, ProductHistory,
+} from '../../components';
+import {
+  RegisterContainer, Title, ProductContainer, TopProductContainer, Container,
 } from './style';
 
 export const RegisterProduct: React.FC = () => (
-  <>
+  <Container>
     <Navbar />
     <RegisterContainer>
       <Title>Cadastro de Produto</Title>
@@ -31,9 +33,12 @@ export const RegisterProduct: React.FC = () => (
           <InputSinve width="50%" title="Nome Fantasia" />
           <InputSinve width="25%" title="Telefone" />
         </TopProductContainer>
-
       </ProductContainer>
-
     </RegisterContainer>
-  </>
+
+    <ProductHistory width="69%" />
+
+    <ButtonSinve title="Cadastrar produto" />
+
+  </Container>
 );

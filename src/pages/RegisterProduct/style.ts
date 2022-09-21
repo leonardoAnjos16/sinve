@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  height: fit-content;
+  padding-bottom: 40px !important;
+`;
+
 export const RegisterContainer = styled.div`
 
-  height: 480px;
+  height: 460px;
   width: 75%;
-  
-
-  /* background-color: red; */
   margin: 0 auto !important;
 
   border-bottom: 2px solid black;
@@ -22,7 +24,7 @@ export const Title = styled.p`
 
 export const ProductContainer = styled.div`
   width: 100%;
-  height: 500px;
+  height: fit-content;
 
   display: flex;
   flex-direction: column;
