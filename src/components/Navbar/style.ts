@@ -39,7 +39,7 @@ export const RightInsideContainer = styled.div`
 
     display: flex;
     align-items: center;
-    /* justify-content: space-around; */
+    justify-content: space-around;
 `;
 
 export const TypeToChoice = styled.p`

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SinveLogo } from '../../assets/icons';
+import { Avatar, SinveLogo } from '../../assets/icons';
 import { Notification } from '../Notification';
 import {
   Container, InsideContainer, LeftInsideContainer, RightInsideContainer, TypeToChoice,
@@ -19,8 +19,12 @@ export const Navbar: React.FC = () => (
         <TypeToChoice>Vendas</TypeToChoice>
       </LeftInsideContainer>
       <RightInsideContainer>
-
         <Notification />
+        <Avatar style={{
+          width: '64px',
+          height: '64px',
+        }}
+        />
       </RightInsideContainer>
     </InsideContainer>
   </Container>
