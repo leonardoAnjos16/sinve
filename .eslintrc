@@ -23,7 +23,8 @@
     "react-hooks"
   ],
   "rules": {
-    "indent": "off",
+    "react/require-default-props": 0,
+    "react/prop-types": 0,
     "semi": [
       "error",
       "always"
@@ -53,14 +54,6 @@
     "no-use-before-define": "off",
     "linebreak-style": "off",
     "no-console": "off",
-    "react/prop-types": [
-      2,
-      {
-        "ignore": [
-          "children"
-        ]
-      }
-    ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "import/no-extraneous-dependencies": [

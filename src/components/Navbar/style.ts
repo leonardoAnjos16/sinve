@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     height: 86px;
+    width: 100%;
     background-color: ${(props) => props.theme.colors.thimberwolf};
 
     display: flex;
@@ -24,7 +21,7 @@ export const InsideContainer = styled.div`
 `;
 
 export const LeftInsideContainer = styled.div`
-    width: 25%;
+    width:  373px;
     height: 100%;
 
     display: flex;
@@ -34,7 +31,7 @@ export const LeftInsideContainer = styled.div`
 `;
 
 export const RightInsideContainer = styled.div`
-    width: 10%;
+    width: 160px;
     height: 100%;
 
     display: flex;

@@ -1,5 +1,5 @@
-import { Home } from './Home';
+import { RegisterProduct } from './RegisterProduct';
 
 export {
-  Home,
+  RegisterProduct,
 };
