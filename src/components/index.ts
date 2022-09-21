@@ -1,5 +1,7 @@
-import { Button } from './ButtonExample/Button';
+import { Navbar } from './Navbar';
+import { Notification } from './Notification';
 
 export {
-  Button,
+    Navbar,
+    Notification,
 };
