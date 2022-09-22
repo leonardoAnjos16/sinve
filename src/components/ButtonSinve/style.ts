@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const ButtonStyled = styled.button`
+interface ContainerProps {
+  margin?: string
+}
+export const ButtonStyled = styled.button<ContainerProps>`
 
   color: white;
   border-style: none;
@@ -16,5 +19,5 @@ export const ButtonStyled = styled.button`
   height: 58px;
 
   margin: 0 auto !important;
-  margin-top: 40px !important;
+  margin: ${(props) => (props.margin ? props.margin : '40px')} !important;
 `;

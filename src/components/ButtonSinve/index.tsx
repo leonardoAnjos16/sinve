@@ -5,8 +5,9 @@ import {
 
 interface ButtonSinveProps {
   title: string
+  margin?: string
 }
 
-export const ButtonSinve: React.FC<ButtonSinveProps> = ({ title }) => (
-  <ButtonStyled>{title}</ButtonStyled>
+export const ButtonSinve: React.FC<ButtonSinveProps> = ({ title, margin }) => (
+  <ButtonStyled margin={margin}>{title}</ButtonStyled>
 );
