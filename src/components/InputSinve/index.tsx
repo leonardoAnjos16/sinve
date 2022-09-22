@@ -11,11 +11,14 @@ interface InputSinveProps {
   width: string;
   title: string;
   isSelectDate?: boolean;
+  isShowHistory?: boolean;
 }
 
-export const InputSinve: React.FC<InputSinveProps> = ({ width, title, isSelectDate }) => (
+export const InputSinve: React.FC<InputSinveProps> = ({
+  width, title, isSelectDate, isShowHistory,
+}) => (
   <Container width={width}>
-    <TitleRegisterProduct>{title}</TitleRegisterProduct>
+    <TitleRegisterProduct isShowHistory={isShowHistory}>{title}</TitleRegisterProduct>
     {
       isSelectDate ? (
         <DatePicker style={{
@@ -23,9 +26,11 @@ export const InputSinve: React.FC<InputSinveProps> = ({ width, title, isSelectDa
         }}
         />
       ) : (
-        <SinveInput style={{
-          width: '100%',
-        }}
+        <SinveInput
+          style={{
+            width: '100%',
+          }}
+          isShowHistory={isShowHistory}
         />
       )
     }

@@ -5,6 +5,7 @@ import { ProductHistory } from './ProductHistory';
 import { ButtonSinve } from './ButtonSinve';
 import { InputSearch } from './InputSearch';
 import { TableComponent } from './Table';
+import { ShowProductHistory } from './ShowProductHistory';
 
 export {
   Navbar,
@@ -14,4 +15,5 @@ export {
   ButtonSinve,
   InputSearch,
   TableComponent,
+  ShowProductHistory,
 };

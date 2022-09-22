@@ -4,6 +4,10 @@ interface ContainerProps {
     width: string
 }
 
+interface RegisterProductProps {
+    isShowHistory?: boolean;
+}
+
 export const Container = styled.div<ContainerProps>`
     width: ${(props) => props.width};
     height: fit-content;
@@ -15,15 +19,17 @@ export const Container = styled.div<ContainerProps>`
     margin-bottom: 8px !important;
 `;
 
-export const TitleRegisterProduct = styled.p`
-    font-weight: 400;
-    font-size: 20px;
+export const TitleRegisterProduct = styled.p<RegisterProductProps>`
+    font-weight: ${({ isShowHistory }) => (isShowHistory ? 500 : 400)};
+    font-size: 1.25rem;
     width: 100%;
     color: rgba(0.0, 0.0, 0.0, 0.85);
 `;
 
-export const SinveInput = styled.input`
+export const SinveInput = styled.input<RegisterProductProps>`
     outline: none;
-    border: 1px solid ${(props) => props.theme.colors.gray};
-    height: 31px;
+    border: 1px solid ${({ theme, isShowHistory }) => (isShowHistory ? 'black' : theme.colors.gray)};
+    height: ${(props) => (props.isShowHistory ? '40px' : '31px')};
+    background-color: ${(props) => (props.isShowHistory ? 'transparent' : 'white')};
+    border-radius: ${({ isShowHistory }) => (isShowHistory ? '8px' : '0px')};
 `;

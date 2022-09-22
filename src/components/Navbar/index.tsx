@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Avatar, SinveLogo } from '../../assets/icons';
 import { Notification } from '../Notification';
 import {
@@ -15,8 +16,8 @@ export const Navbar: React.FC = () => (
           height: '42px',
         }}
         />
-        <TypeToChoice>Estoque</TypeToChoice>
-        <TypeToChoice>Vendas</TypeToChoice>
+        <Link to="/"><TypeToChoice>Estoque</TypeToChoice></Link>
+        <Link to="/registrar-produto"><TypeToChoice>Vendas</TypeToChoice></Link>
       </LeftInsideContainer>
       <RightInsideContainer>
         <Notification />

@@ -3,13 +3,15 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: fit-content;
   padding-bottom: 40px !important;
+
+  gap: 28px;
 `;
 
 export const RegisterContainer = styled.div`
-
-  height: 460px;
+  height: fit-content;
   width: 75%;
   margin: 0 auto !important;
+  padding-bottom: 30px !important;
 
   border-bottom: 2px solid black;
 `;

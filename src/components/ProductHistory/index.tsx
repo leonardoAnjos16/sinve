@@ -6,14 +6,20 @@ import {
 
 interface ProductHistoryProps {
   width: string
+  onClick: Function;
 }
 
-export const ProductHistory: React.FC<ProductHistoryProps> = ({ width }) => (
+export const ProductHistory: React.FC<ProductHistoryProps> = ({ width, onClick }) => (
   <Container width={width}>
 
     <ContentContainer>
       <Title>Histórico de produto</Title>
-      <Arrow />
+      <Arrow
+        onClick={onClick}
+        style={{
+          cursor: 'pointer',
+        }}
+      />
     </ContentContainer>
 
   </Container>
