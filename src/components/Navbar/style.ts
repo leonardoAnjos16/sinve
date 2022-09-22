@@ -45,4 +45,8 @@ export const TypeToChoice = styled.p`
     text-align: center;
     line-height: 36px;
     color: ${(props) => props.theme.colors.pineTree};
+
+    &:hover {
+        border-bottom: 2px solid  ${(props) => props.theme.colors.pineTree};
+    }
 `;
