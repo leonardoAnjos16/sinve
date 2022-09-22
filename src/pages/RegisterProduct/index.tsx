@@ -1,44 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
-  ButtonSinve, InputSinve, Navbar, ProductHistory,
+  ButtonSinve, InputSinve, Navbar, ProductHistory, ShowProductHistory,
 } from '../../components';
 import {
   RegisterContainer, Title, ProductContainer, TopProductContainer, Container,
 } from './style';
 
-export const RegisterProduct: React.FC = () => (
-  <Container>
-    <Navbar />
-    <RegisterContainer>
-      <Title>Cadastro de Produto</Title>
-      <ProductContainer>
+export const RegisterProduct: React.FC = () => {
+  const [showHistory, setShowHistory] = useState<boolean>(false);
 
-        <TopProductContainer>
-          <InputSinve width="23%" title="Item" />
-          <InputSinve width="74.5%" title="Produto" />
-        </TopProductContainer>
+  const didUserTapArrowButton = () => {
+    setShowHistory(!showHistory);
+  };
 
-        <TopProductContainer>
-          <InputSinve width="25%" title="Data de Entrada" isSelectDate />
-          <InputSinve width="25%" title="Data de Validade" isSelectDate />
-          <InputSinve width="25%" title="Quantidade" />
-          <InputSinve width="25%" title="Preço por unidade" />
-        </TopProductContainer>
+  return (
+    <Container>
+      <Navbar />
+      <RegisterContainer>
+        <Title>Cadastro de Produto</Title>
+        <ProductContainer>
 
-        <Title>Informações do Fornecedor</Title>
+          <TopProductContainer>
+            <InputSinve width="23%" title="Item" />
+            <InputSinve width="74.5%" title="Produto" />
+          </TopProductContainer>
 
-        <TopProductContainer>
-          <InputSinve width="25%" title="CNPJ" />
-          <InputSinve width="50%" title="Nome Fantasia" />
-          <InputSinve width="25%" title="Telefone" />
-        </TopProductContainer>
-      </ProductContainer>
-    </RegisterContainer>
+          <TopProductContainer>
+            <InputSinve width="25%" title="Data de Entrada" isSelectDate />
+            <InputSinve width="25%" title="Data de Validade" isSelectDate />
+            <InputSinve width="25%" title="Quantidade" />
+            <InputSinve width="25%" title="Preço por unidade" />
+          </TopProductContainer>
 
-    <ProductHistory width="69%" />
+          <Title>Informações do Fornecedor</Title>
 
-    <ButtonSinve title="Cadastrar produto" />
+          <TopProductContainer>
+            <InputSinve width="25%" title="CNPJ" />
+            <InputSinve width="50%" title="Nome Fantasia" />
+            <InputSinve width="25%" title="Telefone" />
+          </TopProductContainer>
+        </ProductContainer>
+      </RegisterContainer>
 
-  </Container>
-);
+      {
+        showHistory ? <ShowProductHistory width="69%" onClick={didUserTapArrowButton} />
+          : <ProductHistory width="69%" onClick={didUserTapArrowButton} />
+      }
+
+      <ButtonSinve title="Cadastrar produto" />
+    </Container>
+
+  );
+};

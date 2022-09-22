@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: fit-content;
   padding-bottom: 40px !important;
+
+  gap: 28px;
 `;
 
 export const RegisterContainer = styled.div`
