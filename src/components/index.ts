@@ -3,6 +3,7 @@ import { Notification } from './Notification';
 import { InputSinve } from './InputSinve';
 import { ProductHistory } from './ProductHistory';
 import { ButtonSinve } from './ButtonSinve';
+import { ShowProductHistory } from './ShowProductHistory';
 
 export {
   Navbar,
@@ -10,4 +11,5 @@ export {
   InputSinve,
   ProductHistory,
   ButtonSinve,
+  ShowProductHistory,
 };
