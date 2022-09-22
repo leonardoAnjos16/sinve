@@ -2,9 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   * {
-    margin: 0;
+    margin: 0 !important;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
   }
 
   html {
@@ -19,8 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background: ${(props) => props.theme.colors.background};
-    color: ${(props) => props.theme.colors.text};
-    font: 400 16px Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
