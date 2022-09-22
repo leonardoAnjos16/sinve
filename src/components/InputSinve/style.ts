@@ -17,7 +17,7 @@ export const Container = styled.div<ContainerProps>`
 
 export const TitleRegisterProduct = styled.p`
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
     width: 100%;
     color: rgba(0.0, 0.0, 0.0, 0.85);
 `;
