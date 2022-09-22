@@ -14,7 +14,7 @@ export const Inventory: React.FC = () => (
     <ElementsContainer>
       <TopContainer>
         <InputSearch width="573px" title="oq" />
-        <ButtonSinve title="Cadastrar produto" margin="10px 0px 40px 0px" />
+        <ButtonSinve title="Cadastrar produto" margin="0px 0px 0px 0px" />
       </TopContainer>
       <TableComponent />
     </ElementsContainer>

@@ -18,6 +18,7 @@ export const TopContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin: 10px 0px 40px 0px !important;
 `;
 
 export const ElementsContainer = styled.div`

@@ -18,6 +18,6 @@ export const ButtonStyled = styled.button<ContainerProps>`
   width: 238px;
   height: 58px;
 
-  margin: 0 auto !important;
-  margin: ${(props) => (props.margin ? props.margin : '40px')} !important;
+  margin: ${(props) => (props.margin ? props.margin : '0 auto')} !important;
+
 `;

@@ -4,7 +4,7 @@ import {
   ButtonSinve, InputSinve, Navbar, ProductHistory, ShowProductHistory,
 } from '../../components';
 import {
-  RegisterContainer, Title, ProductContainer, TopProductContainer, Container,
+  RegisterContainer, Title, ProductContainer, TopProductContainer, Container, ButtonContainer,
 } from './style';
 
 export const RegisterProduct: React.FC = () => {
@@ -47,8 +47,9 @@ export const RegisterProduct: React.FC = () => {
         showHistory ? <ShowProductHistory width="69%" onClick={didUserTapArrowButton} />
           : <ProductHistory width="69%" onClick={didUserTapArrowButton} />
       }
-
-      <ButtonSinve title="Cadastrar produto" />
+      <ButtonContainer>
+        <ButtonSinve title="Cadastrar produto" />
+      </ButtonContainer>
     </Container>
 
   );

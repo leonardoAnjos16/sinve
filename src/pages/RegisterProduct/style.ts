@@ -41,3 +41,7 @@ export const TopProductContainer = styled.div`
   gap: 28px;
   width: 100%;
 `;
+
+export const ButtonContainer = styled.div`
+  margin-top: 40px !important;
+`;
