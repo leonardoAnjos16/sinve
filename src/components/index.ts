@@ -6,6 +6,7 @@ import { ButtonSinve } from './ButtonSinve';
 import { InputSearch } from './InputSearch';
 import { TableComponent } from './Table';
 import { ShowProductHistory } from './ShowProductHistory';
+import { SalesPieChart } from './SalesPieChart';
 
 export {
   Navbar,
@@ -16,4 +17,5 @@ export {
   InputSearch,
   TableComponent,
   ShowProductHistory,
+  SalesPieChart,
 };
