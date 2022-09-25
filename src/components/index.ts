@@ -8,6 +8,7 @@ import { TableComponent } from './Table';
 import { ShowProductHistory } from './ShowProductHistory';
 import { SalesPieChart } from './SalesPieChart';
 import { SalesBarChart } from './SalesBarChart';
+import { SalesAreaChart } from './SalesAreaChart';
 
 export {
   Navbar,
@@ -20,4 +21,5 @@ export {
   ShowProductHistory,
   SalesPieChart,
   SalesBarChart,
+  SalesAreaChart,
 };
