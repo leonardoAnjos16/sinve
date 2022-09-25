@@ -1,0 +1,214 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .main{
+    width: 1308px;
+    height: 852px;
+    /* background-color: yellow; */
+    margin: auto;
+    margin-top: 100px;
+  }
+  
+  .top{
+    display: flex;
+  
+  }
+  
+  .inside_first{
+    padding-left: 30px;
+    padding-top: 30px;
+    border-bottom: 1px solid lightgray;
+    
+  }
+  .inside_first h2{
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+  
+  .vendas{
+    padding-left: 30px;
+    padding-top: 10px;
+  }
+  
+  .inside_first p{
+    padding-bottom: 10px;
+  }
+  .info{
+    border-radius: 100%;
+    height: 16px;
+    width: 16px;
+    padding-bottom: 7px;
+    cursor: pointer;
+    border: 1px solid black;
+    outline: none;
+  }
+  
+  .inside_second{
+    padding-left: 30px;
+    padding-top: 30px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+  }
+  
+  .inside_second h2{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .one_graph{
+    width: 616px;
+    height: 54px;
+    /* background-color: blue; */
+  }
+  
+  .title{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+  
+  }
+  
+  .first{
+    width: 664px;
+    height: 464px;
+    /* background-color: red; */
+    margin-right: 20px;
+  }
+  
+  .first_div{
+    height: 220px;
+    /* background-color: grey; */
+  }
+  
+  .second{
+    width: 664px;
+    height: 464px;
+    /* background-color: green; */
+  }
+  
+  
+  .nav{
+    display: flex;
+    height: 56px;
+    /* background-color: brown; */
+    padding-left: 20px;
+    padding-top: 20px;
+    border-bottom: 1px solid lightgray;
+  }
+  
+  
+  .nav h2{
+    font-size: 16px;
+    font-weight: 500;
+    padding-right: 200px;
+    color: black;
+  }
+  
+  .navtwo{
+    display: flex;
+    height: 56px;
+    /* background-color: brown; */
+    border-bottom: 1px solid lightgray;
+    padding-top: 20px;
+    padding-left: 20px;
+    justify-content: space-between;
+  }
+  
+  .navtwo h2{
+    font-size: 16px;
+    font-weight: 500;
+    color: black;
+
+  }
+  
+  
+  
+  .button_second{
+    width: 87px;
+    height: 32px;
+    outline: none;
+    border: none;
+  }
+  
+  .button1_second{
+    width: 94px;
+    height: 32px;
+    outline: none;
+    border: none;
+  }
+  
+  .val{
+    margin-left: 25px;
+    margin-top: 25px;
+  }
+  .button2_second{
+    width: 135px;
+    height: 32px;
+    outline: none;
+    border: none;
+  }
+  
+  .button_div .button_second, .button_div .button1_second, .button_div .button2_second{
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .graph{
+    width: 242px;
+    height: 248px;
+    /* background-color: blue; */
+  }
+  
+  .table_div{
+    display: flex;
+    width: 570px;
+    height: 254px;
+    /* background-color: red; */
+    margin: auto;
+    margin-top: 50px;
+    justify-content: space-around;
+  }
+  
+  .table{
+    width: 241px;
+    height: 254px;
+  }
+  
+  
+  .third{
+    /* background-color: lightblue; */
+    width: 1308px;
+    height: 364px;
+    margin-top: 25px;
+  }
+  
+  .button_div{
+    padding-right: 50px;
+  }
+  
+  .select{
+    width: 131px;
+    height: 31px;
+  }
+  
+  .third_content{
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+    margin-left: 20px;
+  }
+  
+  .last_graph{
+    width: 757px;
+    height: 233px;
+    /* background-color: pink; */
+  }
+  
+  .last_table{
+    margin-right: 150px;
+  }
+  
+  
