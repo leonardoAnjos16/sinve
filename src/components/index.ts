@@ -7,6 +7,7 @@ import { InputSearch } from './InputSearch';
 import { TableComponent } from './Table';
 import { ShowProductHistory } from './ShowProductHistory';
 import { SalesPieChart } from './SalesPieChart';
+import { SalesBarChart } from './SalesBarChart';
 
 export {
   Navbar,
@@ -18,4 +19,5 @@ export {
   TableComponent,
   ShowProductHistory,
   SalesPieChart,
+  SalesBarChart,
 };
