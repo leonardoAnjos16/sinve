@@ -1,9 +1,9 @@
 import { RegisterProduct } from './RegisterProduct';
 import { Inventory } from './Inventory';
-import { Sales } from './Sales';
+import { SalesPage } from './Sales';
 
 export {
   RegisterProduct,
   Inventory,
-  Sales,
+  SalesPage,
 };

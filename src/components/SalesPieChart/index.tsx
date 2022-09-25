@@ -4,16 +4,19 @@ import {
   Container,
 } from './style';
 
-interface ButtonSinveProps {
-  data: number[]
+interface ChartData {
+  category: string,
+  value: number
 }
 
-export const SalesPieChart: React.FC<ButtonSinveProps> = ({ data }) => {
-  const x = 2;
+interface SalesPieChartProps {
+  data: ChartData[]
+}
+
+export const SalesPieChart: React.FC<SalesPieChartProps> = ({ data }) => {
   const color = ['#1890FF', '#13C2C2', '#52C41A', '#FADB14', '#EB2F96', '#722ED1'];
 
   const width = 250;
-  const height = width;
   const radius = width / 2;
   const donutWidth = 0.1 * width;
 
@@ -42,9 +45,8 @@ export const SalesPieChart: React.FC<ButtonSinveProps> = ({ data }) => {
       .sort(null)
       .padAngle(0.04);
 
-    const path = svg
-      .selectAll('path')
-      .data((d) => pieG(data))
+    svg.selectAll('path')
+      .data((d) => pieG(data.map((e) => e.value)))
       .enter()
       .append('path')
       .attr('d', arc as any)
@@ -52,8 +54,6 @@ export const SalesPieChart: React.FC<ButtonSinveProps> = ({ data }) => {
   }
 
   return (
-    <Container>
-      <div id="sales-pie-chart" />
-    </Container>
+    <Container id="sales-pie-chart" />
   );
 };
