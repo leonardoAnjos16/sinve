@@ -8,30 +8,68 @@ import { CardsContainer, Container, ElementsContainer } from './style';
 import './styles.css';
 
 export const SalesPage: React.FC = () => {
+  const color = ['#1890FF', '#13C2C2', '#52C41A', '#FADB14', '#EB2F96', '#722ED1'];
+
   const pieCharData = [
-    { category: 'Remedio', percent: 15, value: 28.8 },
-    { category: 'Pets', percent: 19, value: 21.4 },
-    { category: 'Eletros', percent: 10, value: 19.7 },
-    { category: 'Cozinha', percent: 5, value: 14.8 },
-    { category: 'Mesa', percent: 51, value: 7.65 },
-    { category: 'Banho', percent: 23, value: 7.65 },
+    {
+      color: '#1890FF', category: 'Remedio', percent: 15, value: 28.8,
+    },
+    {
+      color: '#13C2C2', category: 'Pets', percent: 19, value: 21.4,
+    },
+    {
+      color: '#52C41A', category: 'Eletros', percent: 10, value: 19.7,
+    },
+    {
+      color: '#FADB14', category: 'Cozinha', percent: 5, value: 14.8,
+    },
+    {
+      color: '#EB2F96', category: 'Mesa', percent: 51, value: 7.65,
+    },
+    {
+      color: '#722ED1', category: 'Banho', percent: 23, value: 7.65,
+    },
   ];
 
   const pieCharDataYear = [
-    { category: 'Remedio', percent: 19, value: 15.8 },
-    { category: 'Pets', percent: 23, value: 22.4 },
-    { category: 'Eletros', percent: 8, value: 9.7 },
-    { category: 'Cozinha', percent: 31, value: 65.8 },
-    { category: 'Mesa', percent: 10, value: 70.65 },
-    { category: 'Banho', percent: 12, value: 7.65 },
+    {
+      color: '#1890FF', category: 'Remedio', percent: 19, value: 15.8,
+    },
+    {
+      color: '#13C2C2', category: 'Pets', percent: 23, value: 22.4,
+    },
+    {
+      color: '#52C41A', category: 'Eletros', percent: 8, value: 9.7,
+    },
+    {
+      color: '#FADB14', category: 'Cozinha', percent: 31, value: 65.8,
+    },
+    {
+      color: '#EB2F96', category: 'Mesa', percent: 10, value: 70.65,
+    },
+    {
+      color: '#722ED1', category: 'Banho', percent: 12, value: 7.65,
+    },
   ];
   const pieCharDataMonth = [
-    { category: 'Remedio', percent: 9, value: 10.8 },
-    { category: 'Pets', percent: 25, value: 13.4 },
-    { category: 'Eletros', percent: 45, value: 98.7 },
-    { category: 'Cozinha', percent: 61, value: 10.8 },
-    { category: 'Mesa', percent: 8, value: 65.65 },
-    { category: 'Banho', percent: 32, value: 7.65 },
+    {
+      color: '#1890FF', category: 'Remedio', percent: 9, value: 10.8,
+    },
+    {
+      color: '#13C2C2', category: 'Pets', percent: 25, value: 13.4,
+    },
+    {
+      color: '#52C41A', category: 'Eletros', percent: 45, value: 98.7,
+    },
+    {
+      color: '#FADB14', category: 'Cozinha', percent: 61, value: 10.8,
+    },
+    {
+      color: '#EB2F96', category: 'Mesa', percent: 8, value: 65.65,
+    },
+    {
+      color: '#722ED1', category: 'Banho', percent: 32, value: 7.65,
+    },
   ];
 
   const barChartData = [
@@ -134,7 +172,16 @@ export const SalesPage: React.FC = () => {
                     {
                       pieData.map((val) => (
                         <tr>
-                          <td>{val.category}</td>
+                          <td>
+                            {' '}
+                            <div
+                              className="teste"
+                              style={{
+                                width: '6px', height: '6px', backgroundColor: val.color, borderRadius: '100%', display: 'inline-block',
+                              }}
+                            />
+                            {val.category}
+                          </td>
                           <td className="td_color">
                             {val.percent}
                             {' '}
@@ -147,7 +194,7 @@ export const SalesPage: React.FC = () => {
                         </tr>
 
                       ))
-}
+                    }
                   </table>
                 </div>
               </section>

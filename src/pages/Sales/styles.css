@@ -49,7 +49,7 @@
   .inside_second{
     padding-left: 30px;
     padding-top: 30px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     padding-bottom: 10px;
   }
   
@@ -84,8 +84,11 @@
   }
   
   .second{
-    width: 664px;
+    width: 50%;
     height: 464px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 2px;
     /* background-color: green; */
   }
   
@@ -199,7 +202,7 @@
   }
   
   .table{
-    width: 241px;
+    width: 42%;
     height: 254px;
   }
   
@@ -241,3 +244,7 @@
     color:#8DB580
   }
   
+  .teste{
+    
+    margin-right: 8px !important;
+  }
