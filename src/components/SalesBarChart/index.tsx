@@ -30,6 +30,10 @@ export const SalesBarChart: React.FC<SalesBarChartProps> = ({ data }) => {
   }, [data]);
 
   function draw() {
+    d3.select('#sales-bar-chart')
+      .select('svg')
+      .remove();
+
     const x = d3.scaleBand()
       .domain(categories)
       .range([margin.left, width - margin.right])

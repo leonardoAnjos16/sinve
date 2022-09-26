@@ -25,6 +25,10 @@ export const SalesPieChart: React.FC<SalesPieChartProps> = ({ data }) => {
   }, [data]);
 
   function draw() {
+    d3.select('#sales-pie-chart')
+      .select('svg')
+      .remove();
+
     const svg = d3
       .select('#sales-pie-chart')
       .append('svg')

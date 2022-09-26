@@ -17,6 +17,10 @@ export const SalesAreaChart: React.FC<SalesAreaChartProps> = ({ data }) => {
   }, [data]);
 
   function draw() {
+    d3.select('#sales-area-chart')
+      .select('svg')
+      .remove();
+
     const x = d3.scaleLinear()
       .domain([0, data.length])
       .range([0, width]);

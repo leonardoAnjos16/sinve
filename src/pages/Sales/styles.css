@@ -1,5 +1,5 @@
 *{
-    margin: 0;
+    margin: 0 !important;
     padding: 0;
     box-sizing: border-box;
   }
@@ -8,8 +8,8 @@
     width: 1308px;
     height: 852px;
     /* background-color: yellow; */
-    margin: auto;
-    margin-top: 100px;
+    margin: auto !important;
+    margin-top: 100px !important;
   }
   
   .top{
@@ -75,7 +75,7 @@
     width: 664px;
     height: 464px;
     /* background-color: red; */
-    margin-right: 20px;
+    margin-right: 20px !important;
   }
   
   .first_div{
@@ -132,6 +132,14 @@
     outline: none;
     border: none;
   }
+
+  .button_second_active{
+    width: 87px;
+    height: 32px;
+    outline: none;
+    border: 1px solid #8B1A47;
+    color: #8B1A47;
+  }
   
   .button1_second{
     width: 94px;
@@ -139,10 +147,19 @@
     outline: none;
     border: none;
   }
+
+  .button1_second_active{
+    width: 94px;
+    height: 32px;
+    outline: none;
+    border: 1px solid #8B1A47;
+    color: #8B1A47;
+}
+
   
   .val{
-    margin-left: 25px;
-    margin-top: 25px;
+    margin-left: 25px !important;
+    margin-top: 25px !important; 
   }
   .button2_second{
     width: 135px;
@@ -150,6 +167,15 @@
     outline: none;
     border: none;
   }
+
+  .button2_second_active{
+    width: 135px;
+    height: 32px;
+    outline: none;
+    border: 1px solid #8B1A47;
+    color: #8B1A47;
+  }
+
   
   .button_div .button_second, .button_div .button1_second, .button_div .button2_second{
     background-color: transparent;
@@ -167,8 +193,8 @@
     width: 570px;
     height: 254px;
     /* background-color: red; */
-    margin: auto;
-    margin-top: 50px;
+    margin: auto !important;
+    margin-top: 50px !important;
     justify-content: space-around;
   }
   
@@ -182,7 +208,7 @@
     /* background-color: lightblue; */
     width: 1308px;
     height: 364px;
-    margin-top: 25px;
+    margin-top: 25px !important;
   }
   
   .button_div{
@@ -196,9 +222,9 @@
   
   .third_content{
     display: flex;
-    margin-top: 30px;
+    margin-top: 30px !important;
     justify-content: space-between;
-    margin-left: 20px;
+    margin-left: 20px !important;
   }
   
   .last_graph{
@@ -208,7 +234,10 @@
   }
   
   .last_table{
-    margin-right: 150px;
+    margin-right: 150px !important;
   }
   
+  .td_color{
+    color:#8DB580
+  }
   
