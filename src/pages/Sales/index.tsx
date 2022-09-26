@@ -163,7 +163,6 @@ export const SalesPage: React.FC = () => {
   const [pieYear, setPieYear] = useState(false);
 
   const changeToAll = () => {
-    console.log('dfs');
     setPieAll(true);
     setPieMonth(false);
     setPieYear(false);
@@ -171,7 +170,6 @@ export const SalesPage: React.FC = () => {
   };
 
   const changeToMonth = () => {
-    console.log('teste');
     setPieAll(false);
     setPieMonth(true);
     setPieYear(false);
@@ -179,7 +177,6 @@ export const SalesPage: React.FC = () => {
   };
 
   const changeToYear = () => {
-    console.log('chama');
     setPieAll(false);
     setPieMonth(false);
     setPieYear(true);
@@ -244,9 +241,11 @@ export const SalesPage: React.FC = () => {
 
                 <nav className="nav">
                   <h2>Vendas</h2>
-                  <button type="button" className={pieAll ? 'button_second_active' : 'button_second'} onClick={() => changeToAll()}> Sempre</button>
-                  <button type="button" className={pieYear ? 'button1_second_active' : 'button1_second'} onClick={() => changeToYear()}>Esse ano</button>
-                  <button type="button" className={pieMonth ? 'button2_second_active' : 'button2_second'} onClick={() => changeToMonth()}> Últimos meses</button>
+                  <div className="nav-div">
+                    <button type="button" className={pieAll ? 'button_second_active' : 'button_second'} onClick={() => changeToAll()}> Sempre</button>
+                    <button type="button" className={pieYear ? 'button1_second_active' : 'button1_second'} onClick={() => changeToYear()}>Esse ano</button>
+                    <button type="button" className={pieMonth ? 'button2_second_active' : 'button2_second'} onClick={() => changeToMonth()}> Últimos meses</button>
+                  </div>
                 </nav>
 
                 <h2 className="val">R$ 126,560</h2>
@@ -261,7 +260,7 @@ export const SalesPage: React.FC = () => {
                           <td>
                             {' '}
                             <div
-                              className="teste"
+                              className="categoryEllipse"
                               style={{
                                 width: '6px', height: '6px', backgroundColor: val.color, borderRadius: '100%', display: 'inline-block',
                               }}
@@ -289,9 +288,9 @@ export const SalesPage: React.FC = () => {
               <div className="navtwo">
                 <h2>Vendas por categoria</h2>
                 <div className="button_div">
-                  <button type="button" className="button_second">Sempre</button>
-                  <button type="button" className="button1_second">Este ano</button>
-                  <button type="button" className="button2_second">Últimos meses</button>
+                  <button type="button" className="button_second" style={{ color: '#8B1A47' }}>Sempre</button>
+                  <button type="button" className="button1_second" style={{ color: '#CDCDCD', cursor: 'auto' }}>Este ano</button>
+                  <button type="button" className="button2_second" style={{ color: '#CDCDCD', cursor: 'auto' }}>Últimos meses</button>
                   <select onChange={(e) => handleBarCategory(e)} className="select">
                     {listBarCategories}
                   </select>

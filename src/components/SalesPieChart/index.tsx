@@ -32,8 +32,9 @@ export const SalesPieChart: React.FC<SalesPieChartProps> = ({ data }) => {
     const svg = d3
       .select('#sales-pie-chart')
       .append('svg')
-      .attr('height', width)
       .attr('width', width)
+      .attr('width', '100%')
+      .attr('viewBox', [0, 0, width, width])
       .append('g')
       .attr('transform', `translate(${radius}, ${radius})`);
 

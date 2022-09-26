@@ -107,7 +107,7 @@ body {
 
 .second {
   width: 50%;
-  height: 464px;
+  height: auto;
   background: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 2px;
@@ -115,8 +115,10 @@ body {
 
 .nav {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 56px;
-  padding-left: 20px;
+  padding-inline: 24px;
   padding-top: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -124,8 +126,10 @@ body {
 .nav h2 {
   font-size: 16px;
   font-weight: 500;
-  padding-right: 200px;
   color: black;
+}
+
+.nav-div {
 }
 
 .navtwo {
@@ -175,7 +179,7 @@ body {
 
 .val {
   margin-left: 25px !important;
-  margin-top: 25px !important;
+  margin-top: 50px !important;
 }
 
 .button2_second_active {
@@ -190,7 +194,7 @@ body {
   color: #8db580;
 }
 
-.teste {
+.categoryEllipse {
   margin-right: 8px !important;
 }
 
@@ -209,16 +213,14 @@ body {
 }
 
 .graph {
-  width: 242px;
-  height: 248px;
-  /* background-color: blue; */
+  width: 40%;
+  height: auto;
 }
 
 .table_div {
   display: flex;
-  width: 570px;
-  height: 254px;
-  /* background-color: red; */
+  width: 100%;
+  height: auto;
   margin: auto;
   margin-top: 50px;
   justify-content: space-around;
