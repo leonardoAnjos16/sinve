@@ -5,7 +5,7 @@ import { select } from 'd3';
 import { Container } from './style';
 
 interface ChartData {
-  category: string,
+  product: string,
   value: number
 }
 
@@ -14,7 +14,7 @@ interface SalesBarChartProps {
 }
 
 export const SalesBarChart: React.FC<SalesBarChartProps> = ({ data }) => {
-  const categories: string[] = data.map((e) => e.category);
+  const categories: string[] = data.map((e) => e.product);
 
   const height = 230;
   const width = 3 * height;
@@ -107,7 +107,7 @@ export const SalesBarChart: React.FC<SalesBarChartProps> = ({ data }) => {
           .attr('opacity', '100%');
         selectedBar.append('text')
           .attr('class', 'selectedBar')
-          .attr('x', () => 20 + x(categories[data.findIndex((el: ChartData) => el.category === d.category)])!)
+          .attr('x', () => 20 + x(categories[data.findIndex((el: ChartData) => el.product === d.product)])!)
           .attr('y', () => y(d.value) - 5)
           .attr('width', x.bandwidth())
           .style('font-size', '10px')

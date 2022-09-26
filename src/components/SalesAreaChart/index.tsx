@@ -32,8 +32,8 @@ export const SalesAreaChart: React.FC<SalesAreaChartProps> = ({ data }) => {
     const svg = d3
       .select('#sales-area-chart')
       .append('svg')
-      .attr('height', height)
-      .attr('width', width)
+      .attr('width', '100%')
+      .attr('viewBox', [0, 0, width, height])
       .append('g');
 
     const area = d3.area<number>()
@@ -46,7 +46,7 @@ export const SalesAreaChart: React.FC<SalesAreaChartProps> = ({ data }) => {
       .datum(data)
       .attr('class', 'area-curve')
       .attr('d', area)
-      .attr('fill', '#722ED1');
+      .attr('fill', '#975fe4');
   }
 
   return (

@@ -14,7 +14,7 @@ interface SalesPieChartProps {
 }
 
 export const SalesPieChart: React.FC<SalesPieChartProps> = ({ data }) => {
-  const color = ['#1890FF', '#13C2C2', '#52C41A', '#FADB14', '#EB2F96', '#722ED1'];
+  const color = ['#1890FF', '#13C2C2', '#52C41A', '#FADB14', '#EB2F96', '#975fe4'];
 
   const width = 250;
   const radius = width / 2;
