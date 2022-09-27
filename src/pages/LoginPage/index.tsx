@@ -1,11 +1,18 @@
 import { SinveLoginLogo } from '../../assets/icons';
-import LoginForm from '../../components/LoginForm';
-import { LoginBackground } from './style';
+import LoginPageFooter from '../../components/LoginPageFooter';
+import LoginRegisterSwitch from '../../components/LoginRegisterSwitch';
+import { LoginBackground, SinveSlogan, LRSWrapper } from './style';
 
 const LoginPage = () => (
   <LoginBackground>
     <SinveLoginLogo />
-    <LoginForm />
+    <SinveSlogan>
+      Slogan da Sinve!
+    </SinveSlogan>
+    <LRSWrapper>
+      <LoginRegisterSwitch />
+    </LRSWrapper>
+    <LoginPageFooter />
   </LoginBackground>
 );
 
