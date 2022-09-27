@@ -38,7 +38,7 @@ export const SinveInput = styled.input<RegisterProductProps>`
     -moz-box-sizing: border-box;    
     box-sizing: border-box; 
     ::placeholder{
-        color: #8db580;
+        color: ${({ theme }) => theme.colors.darkSeaGreen};
         text-align: center;
     }
 `;
