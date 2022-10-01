@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import {
   ButtonSinve, InputSinve, Navbar, ProductHistory, ShowProductHistory,
@@ -9,9 +10,14 @@ import {
 
 export const RegisterProduct: React.FC = () => {
   const [showHistory, setShowHistory] = useState<boolean>(false);
+  const history = useHistory();
 
   const didUserTapArrowButton = () => {
     setShowHistory(!showHistory);
+  };
+
+  const didUserTapGoBackInventory = () => {
+    history.goBack();
   };
 
   return (
@@ -22,8 +28,9 @@ export const RegisterProduct: React.FC = () => {
         <ProductContainer>
 
           <TopProductContainer>
-            <InputSinve width="23%" title="Item" />
-            <InputSinve width="74.5%" title="Produto" />
+            <InputSinve width="24%" title="Código de barra" />
+            <InputSinve width="51%" title="Produto" />
+            <InputSinve width="24%" isSelectable title="Categoria do Produto" />
           </TopProductContainer>
 
           <TopProductContainer>
@@ -36,9 +43,9 @@ export const RegisterProduct: React.FC = () => {
           <Title>Informações do Fornecedor</Title>
 
           <TopProductContainer>
-            <InputSinve width="25%" title="CNPJ" />
-            <InputSinve width="50%" title="Nome Fantasia" />
-            <InputSinve width="25%" title="Telefone" />
+            <InputSinve width="24%" title="CNPJ" isSelectable />
+            <InputSinve width="51%" title="Nome Fantasia" />
+            <InputSinve width="24%" title="Prazo de entrega" />
           </TopProductContainer>
         </ProductContainer>
       </RegisterContainer>
@@ -48,6 +55,7 @@ export const RegisterProduct: React.FC = () => {
           : <ProductHistory width="69%" onClick={didUserTapArrowButton} />
       }
       <ButtonContainer>
+        <ButtonSinve title="Voltar" onClick={didUserTapGoBackInventory} />
         <ButtonSinve title="Cadastrar produto" />
       </ButtonContainer>
     </Container>
