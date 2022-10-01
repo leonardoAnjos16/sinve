@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 interface InventoryProps {
   isYellow: boolean
@@ -19,10 +20,21 @@ export const Container = styled.div`
 
 export const LinkCustom = styled.a``;
 
+export const ArrowDown = styled(CaretDownOutlined)`
+  color: red;
+  margin-left: 8px !important;
+`;
+
+export const ArrowUp = styled(CaretUpOutlined)`
+  color: red;
+  margin-left: 8px !important;
+
+`;
+
 export const Inventory = styled.div<InventoryProps>`
   width: 100%;
   height: 100%;
-  background-color: ${(props) => (props.isYellow ? '#FFF1B8' : '#FFCCC7')} ;
+  background-color: ${(props) => (props.isYellow ? '#B5DDB0' : '#FFCCC7')} ;
   position: absolute;
   top: 0px;
   display: flex;
