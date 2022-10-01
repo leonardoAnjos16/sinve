@@ -3,7 +3,9 @@ import {
   Space, Table, Tag, DatePicker, Badge,
 } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { Container, LinkCustom, Inventory } from './style';
+import {
+  Container, LinkCustom, Inventory, ArrowDown, ArrowUp,
+} from './style';
 
 interface DataType {
   key: string;
@@ -30,8 +32,10 @@ const columns: ColumnsType<DataType> = [
     dataIndex: 'inventory',
     key: 'inventory',
     render: (item, everything) => (
-      <Inventory isYellow={everything.inventory >= everything.idealInventory}>
+      <Inventory isYellow={everything.inventory === everything.idealInventory}>
         {item}
+        {everything.inventory > everything.idealInventory && <ArrowUp />}
+        {everything.inventory < everything.idealInventory && <ArrowDown />}
       </Inventory>
     ),
   },
@@ -40,16 +44,16 @@ const columns: ColumnsType<DataType> = [
     dataIndex: 'idealInventory',
     key: 'idealInventory',
   },
-  {
-    title: 'Data de Entrada',
-    key: 'date',
-    render: (_, record) => (
-      <DatePicker style={{
-        width: '100%',
-      }}
-      />
-    ),
-  },
+  // {
+  //   title: 'Data de Entrada',
+  //   key: 'date',
+  //   render: (_, record) => (
+  //     <DatePicker style={{
+  //       width: '100%',
+  //     }}
+  //     />
+  //   ),
+  // },
   {
     title: 'Action',
     key: 'action',
