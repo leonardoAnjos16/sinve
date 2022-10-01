@@ -29,7 +29,7 @@ export const RegisterProduct: React.FC = () => {
 
           <TopProductContainer>
             <InputSinve width="24%" title="Código de barra" />
-            <InputSinve width="50.5%" title="Produto" />
+            <InputSinve width="51%" title="Produto" />
             <InputSinve width="24%" isSelectable title="Categoria do Produto" />
           </TopProductContainer>
 
@@ -43,9 +43,9 @@ export const RegisterProduct: React.FC = () => {
           <Title>Informações do Fornecedor</Title>
 
           <TopProductContainer>
-            <InputSinve width="25%" title="CNPJ" />
-            <InputSinve width="50%" title="Nome Fantasia" />
-            <InputSinve width="25%" title="Prazo de entrega" />
+            <InputSinve width="24%" title="CNPJ" isSelectable />
+            <InputSinve width="51%" title="Nome Fantasia" />
+            <InputSinve width="24%" title="Prazo de entrega" />
           </TopProductContainer>
         </ProductContainer>
       </RegisterContainer>
