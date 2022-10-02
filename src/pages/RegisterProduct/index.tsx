@@ -9,8 +9,8 @@ import {
 } from './style';
 
 export const RegisterProduct: React.FC = () => {
-  const [showHistory, setShowHistory] = useState<boolean>(false);
   const history = useHistory();
+  const [showHistory, setShowHistory] = useState<boolean>(false);
 
   const didUserTapArrowButton = () => {
     setShowHistory(!showHistory);

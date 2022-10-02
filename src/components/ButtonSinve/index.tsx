@@ -6,17 +6,9 @@ import {
 interface ButtonSinveProps {
   title: string
   margin?: string
-  onClick?: Function
+  onClick?: () => void
 }
 
 export const ButtonSinve: React.FC<ButtonSinveProps> = ({ title, margin, onClick }) => (
-  <ButtonStyled
-    margin={margin}
-    onClick={() => {
-      if (onClick) onClick();
-    }}
-  >
-    {title}
-
-  </ButtonStyled>
+  <ButtonStyled margin={margin} onClick={onClick}>{title}</ButtonStyled>
 );
