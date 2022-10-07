@@ -11,8 +11,8 @@ import {
 
 export const RegisterProduct: React.FC = () => {
   const history = useHistory();
-  const [showHistory, setShowHistory] = useState<boolean>(false);
-  const [showProvider, setShowProvider] = useState<boolean>(false);
+  const [showHistory, setShowHistory] = useState(false);
+  const [showProvider, setShowProvider] = useState(false);
 
   const didUserTapShowProductHistory = () => {
     setShowHistory(!showHistory);
@@ -23,7 +23,7 @@ export const RegisterProduct: React.FC = () => {
   };
 
   const didUserTapShowProvider = () => {
-    setShowProvider(!showHistory);
+    setShowProvider(!showProvider);
   };
 
   return (
