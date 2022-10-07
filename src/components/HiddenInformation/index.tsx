@@ -4,16 +4,17 @@ import {
   Container, Title, ContentContainer,
 } from './style';
 
-interface ProductHistoryProps {
+interface HiddenInformationProps {
   width: string
   onClick: Function;
+  title: string;
 }
 
-export const ProductHistory: React.FC<ProductHistoryProps> = ({ width, onClick }) => (
+export const HiddenInformation: React.FC<HiddenInformationProps> = ({ width, onClick, title }) => (
   <Container width={width}>
 
     <ContentContainer>
-      <Title>Histórico de produto</Title>
+      <Title>{title}</Title>
       <Arrow
         onClick={onClick}
         style={{

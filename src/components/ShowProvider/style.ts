@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface ContainerProps {
-    width: string
+    width: string;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -24,6 +24,14 @@ export const Container = styled.div<ContainerProps>`
     padding-bottom: 45px !important;
 `;
 
+export const ContentContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 89%;
+    gap: 24px;
+`;
+
 export const TitleContainer = styled.div`
 
     width: 89%;
@@ -34,14 +42,6 @@ export const TitleContainer = styled.div`
     justify-content: space-between;
 
     margin-top: 30px !important;
-`;
-
-export const InfoContainer = styled.div`
-    width: 94%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
 `;
 
 export const Title = styled.p`

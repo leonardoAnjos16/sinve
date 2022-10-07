@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {
-  ButtonSinve, InputSinve, Navbar, ProductHistory, ShowProductHistory,
+  ButtonSinve, InputSinve, Navbar, HiddenInformation, ShowProductHistory,
 } from '../../components';
+import { ShowProvider } from '../../components/ShowProvider';
 import {
   RegisterContainer, Title, ProductContainer, TopProductContainer, Container, ButtonContainer,
 } from './style';
@@ -11,13 +12,18 @@ import {
 export const RegisterProduct: React.FC = () => {
   const history = useHistory();
   const [showHistory, setShowHistory] = useState<boolean>(false);
+  const [showProvider, setShowProvider] = useState<boolean>(false);
 
-  const didUserTapArrowButton = () => {
+  const didUserTapShowProductHistory = () => {
     setShowHistory(!showHistory);
   };
 
   const didUserTapGoBackInventory = () => {
     history.goBack();
+  };
+
+  const didUserTapShowProvider = () => {
+    setShowProvider(!showHistory);
   };
 
   return (
@@ -28,31 +34,35 @@ export const RegisterProduct: React.FC = () => {
         <ProductContainer>
 
           <TopProductContainer>
-            <InputSinve width="24%" title="Código de barra" />
-            <InputSinve width="51%" title="Produto" />
-            <InputSinve width="24%" isSelectable title="Categoria do Produto" />
+            <InputSinve width="18%" title="Código do item" />
+            <InputSinve width="45%" title="Produto" />
+            <InputSinve width="20%" title="Categoria" />
+            <InputSinve width="20%" title="Quantidade" />
           </TopProductContainer>
 
           <TopProductContainer>
             <InputSinve width="25%" title="Data de Entrada" isSelectDate />
             <InputSinve width="25%" title="Data de Validade" isSelectDate />
-            <InputSinve width="25%" title="Quantidade" />
-            <InputSinve width="25%" title="Preço por unidade" />
+            <InputSinve width="25%" title="Preço de Venda" />
+            <InputSinve width="25%" title="Preço de Compra" />
           </TopProductContainer>
 
-          <Title>Informações do Fornecedor</Title>
-
-          <TopProductContainer>
-            <InputSinve width="24%" title="CNPJ" isSelectable />
-            <InputSinve width="51%" title="Nome Fantasia" />
-            <InputSinve width="24%" title="Prazo de entrega" />
-          </TopProductContainer>
         </ProductContainer>
       </RegisterContainer>
 
       {
-        showHistory ? <ShowProductHistory width="69%" onClick={didUserTapArrowButton} />
-          : <ProductHistory width="69%" onClick={didUserTapArrowButton} />
+        showProvider ? <ShowProvider width="75%" onClick={didUserTapShowProvider} /> : (
+          <HiddenInformation
+            width="75%"
+            onClick={didUserTapShowProvider}
+            title="Informações do fornecedor"
+          />
+        )
+      }
+
+      {
+        showHistory ? <ShowProductHistory width="75%" onClick={didUserTapShowProductHistory} />
+          : <HiddenInformation width="75%" onClick={didUserTapShowProductHistory} title="Histórico de produto" />
       }
       <ButtonContainer>
         <ButtonSinve title="Voltar" onClick={didUserTapGoBackInventory} />

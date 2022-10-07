@@ -11,9 +11,6 @@ export const RegisterContainer = styled.div`
   height: fit-content;
   width: 75%;
   margin: 0 auto !important;
-  padding-bottom: 30px !important;
-
-  border-bottom: 2px solid black;
 `;
 
 export const Title = styled.p`
