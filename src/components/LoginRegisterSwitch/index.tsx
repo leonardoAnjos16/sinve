@@ -1,25 +1,30 @@
+import { Tabs } from 'antd';
+import TabPane from 'antd/lib/tabs/TabPane';
 import LoginForm from '../LoginForm';
-import { SwitchWrapper, OptionsWrapper, Option } from './style';
+import RegisterForm from '../RegisterForm';
+import { SwitchWrapper, OptionsWrapper } from './style';
 
-const LoginRegisterSwitch = () => {
-  const activeOption = true;
-  return (
-    <SwitchWrapper>
-      <OptionsWrapper>
-        <Option
-          active={activeOption}
+const LoginRegisterSwitch = () => (
+  <SwitchWrapper>
+    <OptionsWrapper>
+      <Tabs
+        defaultActiveKey="login"
+      >
+        <TabPane
+          tab="Login"
+          key="login"
         >
-          Login
-        </Option>
-        <Option
-          active={!activeOption}
+          <LoginForm />
+        </TabPane>
+        <TabPane
+          tab="Registro"
+          key="registro"
         >
-          Register
-        </Option>
-      </OptionsWrapper>
-      <LoginForm />
-    </SwitchWrapper>
-  );
-};
+          <RegisterForm />
+        </TabPane>
+      </Tabs>
+    </OptionsWrapper>
+  </SwitchWrapper>
+);
 
 export default LoginRegisterSwitch;

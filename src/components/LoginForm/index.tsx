@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { Link } from 'react-router-dom';
 import { InputSinve } from '..';
 import { AvatarOutlined, Lock } from '../../assets/icons';
 import {
@@ -10,6 +11,7 @@ import {
   RememberMeInput,
   ForgotPasswordLink,
   LoginButton,
+  ButtonWrapper,
 } from './style';
 
 const LoginForm = () => {
@@ -48,11 +50,17 @@ const LoginForm = () => {
           </ForgotPasswordLink>
         </LoginFormSubMenu>
       </FormWrapper>
-      <LoginButton
-        onClick={() => console.log('login')}
-      >
-        Entrar
-      </LoginButton>
+      <ButtonWrapper>
+        <Link
+          to="/inventory"
+        >
+          <LoginButton
+            onClick={() => console.log('login')}
+          >
+            Entrar
+          </LoginButton>
+        </Link>
+      </ButtonWrapper>
     </>
   );
 };

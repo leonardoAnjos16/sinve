@@ -77,3 +77,9 @@ export const LoginButton = styled.button`
   height: 40px;
   margin: 22px !important;
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;

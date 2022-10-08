@@ -18,13 +18,21 @@ export const OptionsWrapper = styled.div`
   width: 100%;
   margin-top: 22px !important;
   padding-bottom: 7px !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-`;
-
-export const Option = styled.div<ActiveProps>`
-  width: fit-content;
-  cursor: pointer;
-  color: ${(props) => (props.active ? '#8B1A47' : 'black')};
-  border-bottom: ${(props) => (props.active ? '3px solid #8B1A47' : 0)};
-  margin-right: 32px !important;
+  .ant-tabs-top > .ant-tabs-nav::before {
+    border: none !important;
+  }
+  
+  .ant-tabs-ink-bar {
+    background: ${({ theme }) => theme.colors.claret};
+  }
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: ${({ theme }) => theme.colors.claret};
+  }
+  .ant-tabs-tab {
+    margin-right: 10px !important;
+    padding-bottom: 7px;
+  }
+  .ant-tabs-tab:hover {
+    color: ${({ theme }) => theme.colors.claret};
+  }
 `;
