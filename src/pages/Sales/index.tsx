@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useEffect, ChangeEvent, useState } from 'react';
 import { InfoCircleOutlined, CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 
 import {
@@ -6,11 +6,26 @@ import {
 } from '../../components';
 import { CardsContainer, Container, ElementsContainer } from './style';
 
+import { SalesAPI } from '../../api/salesAPI/SalesAPI';
+import { getBarChartData } from './functions';
+import type { DataType } from '../../utils/typings/unionTypes';
+
 import './styles.css';
 
 export const SalesPage: React.FC = () => {
   const [selectedBarCategory, setBarCategory] = useState(0);
-  const color = ['#1890FF', '#13C2C2', '#52C41A', '#FADB14', '#EB2F96', '#722ED1'];
+
+  const [productsPerCategory, setProductsPerCategory] = useState<DataType>('always');
+  const [barChartData, setBarChartData] = useState<any[]>([]);
+
+  const [salesPerCategory, setSalesPerCategory] = useState<DataType>('always');
+
+  useEffect(() => {
+    SalesAPI.getDataByCategory(productsPerCategory)
+      .then((result) => {
+        setBarChartData(getBarChartData(result));
+      });
+  }, [productsPerCategory]);
 
   const pieCharData = [
     {
@@ -75,85 +90,6 @@ export const SalesPage: React.FC = () => {
     },
   ];
 
-  const barChartData = [
-    {
-      category: 'remedio',
-      products: [
-        { product: 'diazepan', value: 770 },
-        { product: 'dipirona', value: 1170 },
-        { product: 'mixidil', value: 820 },
-        { product: 'omeprazol', value: 570 },
-        { product: 'neosaldina', value: 372 },
-        { product: 'allegra', value: 240 },
-        { product: 'merthiolate', value: 128 },
-      ],
-    },
-    {
-      category: 'calçados',
-      products: [
-        { product: 'adidas power 123', value: 180 },
-        { product: 'sandalia havaiana verão', value: 1100 },
-        { product: 'tenis all star', value: 800 },
-        { product: 'sandalia cartago', value: 980 },
-        { product: 'tenis all jordan', value: 10 },
-        { product: 'crocs', value: 5 },
-        { product: 'havaiana com prego', value: 1000 },
-      ],
-    },
-    {
-      category: 'eletros',
-      products: [
-        { product: 'Samsung TV', value: 680 },
-        { product: 'Samsung galaxy', value: 1170 },
-        { product: 'PlayStation 5 super slim', value: 820 },
-        { product: 'Pulsera galaxy watch', value: 570 },
-        { product: 'Iphone 14s Pro max', value: 760 },
-        { product: 'Ar-condicionado', value: 500 },
-      ],
-    },
-    {
-      category: 'cozinha',
-      products: [
-        { product: 'Conjunto facas', value: 180 },
-        { product: 'Microondas', value: 478 },
-        { product: 'air fryer', value: 1170 },
-        { product: 'Liquidificador', value: 820 },
-        { product: 'Espremedor de laranja', value: 570 },
-        { product: 'Botijão de gás', value: 760 },
-        { product: 'Frigideira antiaderente', value: 478 },
-        { product: 'Escorredor', value: 900 },
-        { product: 'Depurador de ar', value: 500 },
-      ],
-    },
-    {
-      category: 'pets',
-      products: [
-        { product: 'Coleira', value: 180 },
-        { product: 'Ração', value: 478 },
-        { product: 'Bolinha', value: 1170 },
-        { product: 'Mordedor', value: 820 },
-        { product: 'Arranhador', value: 570 },
-        { product: 'Gaiola', value: 760 },
-        { product: 'Casinha', value: 478 },
-        { product: 'Comedouro', value: 978 },
-      ],
-    },
-    {
-      category: 'praia',
-      products: [
-        { product: 'Chapéu', value: 480 },
-        { product: 'Protetor solar', value: 468 },
-        { product: 'Bronzeador', value: 770 },
-        { product: 'Boia', value: 420 },
-        { product: 'Guarda-sol', value: 100 },
-        { product: 'Caiaque', value: 60 },
-        { product: 'Canga', value: 678 },
-        { product: 'Óculos de sol', value: 930 },
-        { product: 'Biquini', value: 1250 },
-      ],
-    },
-  ];
-
   const areaChartData = [30, 24, 22, 19, 13, 9, 11, 14, 17, 22, 26, 24, 21, 23, 21,
     25, 30, 27, 18, 13, 9, 7, 13, 16, 11, 11, 17, 23, 20, 19];
 
@@ -182,8 +118,9 @@ export const SalesPage: React.FC = () => {
     setPieYear(true);
     setPieData(pieCharDataYear);
   };
-  const listBarProducts = barChartData[selectedBarCategory].products.map((d, i) => (
-    <tr className="table-line">
+
+  const listBarProducts = barChartData[selectedBarCategory]?.products.map((d: any, i: any) => (
+    <tr className="table-line" key={`bar-chart-${d.product}`}>
       <td className="table-line-number">{i + 1}</td>
       <td>{d.product}</td>
       <td>{d.value}</td>
@@ -195,7 +132,7 @@ export const SalesPage: React.FC = () => {
   };
 
   const listBarCategories = barChartData.map((d, i) => (
-    <option value={i}>{d.category}</option>
+    <option value={i} key={`bar-chart-option-${d.category}`}>{d.category}</option>
   ));
 
   return (
@@ -254,32 +191,34 @@ export const SalesPage: React.FC = () => {
                     <SalesPieChart data={pieData} />
                   </div>
                   <table className="table">
-                    {
-                      pieData.map((val) => (
-                        <tr>
-                          <td>
-                            {' '}
-                            <div
-                              className="categoryEllipse"
-                              style={{
-                                width: '6px', height: '6px', backgroundColor: val.color, borderRadius: '100%', display: 'inline-block',
-                              }}
-                            />
-                            {val.category}
-                          </td>
-                          <td className="td_color">
-                            {val.percent}
-                            {' '}
-                            %
-                          </td>
-                          <td>
-                            R$
-                            {val.value}
-                          </td>
-                        </tr>
+                    <tbody>
+                      {
+                        pieData.map((val) => (
+                          <tr>
+                            <td>
+                              {' '}
+                              <div
+                                className="categoryEllipse"
+                                style={{
+                                  width: '6px', height: '6px', backgroundColor: val.color, borderRadius: '100%', display: 'inline-block',
+                                }}
+                              />
+                              {val.category}
+                            </td>
+                            <td className="td_color">
+                              {val.percent}
+                              {' '}
+                              %
+                            </td>
+                            <td>
+                              R$
+                              {val.value}
+                            </td>
+                          </tr>
 
-                      ))
-                    }
+                        ))
+                      }
+                    </tbody>
                   </table>
                 </div>
               </section>
@@ -288,9 +227,9 @@ export const SalesPage: React.FC = () => {
               <div className="navtwo">
                 <h2>Vendas por categoria</h2>
                 <div className="button_div">
-                  <button type="button" className="button_second" style={{ color: '#8B1A47' }}>Sempre</button>
-                  <button type="button" className="button1_second" style={{ color: '#CDCDCD', cursor: 'auto' }}>Este ano</button>
-                  <button type="button" className="button2_second" style={{ color: '#CDCDCD', cursor: 'auto' }}>Últimos meses</button>
+                  <button type="button" className={productsPerCategory === 'always' ? 'button_second_active' : 'button_second'} onClick={() => setProductsPerCategory('always')}>Sempre</button>
+                  <button type="button" className={productsPerCategory === 'year' ? 'button1_second_active' : 'button1_second'} onClick={() => setProductsPerCategory('year')}>Este ano</button>
+                  <button type="button" className={productsPerCategory === 'last-months' ? 'button2_second_active' : 'button2_second'} onClick={() => setProductsPerCategory('last-months')}>Últimos meses</button>
                   <select onChange={(e) => handleBarCategory(e)} className="select">
                     {listBarCategories}
                   </select>
@@ -299,7 +238,10 @@ export const SalesPage: React.FC = () => {
 
               <div className="third_content">
                 <div className="last_graph">
-                  <SalesBarChart data={barChartData[selectedBarCategory].products} />
+                  {
+                    barChartData[selectedBarCategory]
+                    && <SalesBarChart data={barChartData[selectedBarCategory].products} />
+                  }
                 </div>
                 <div className="last_table">
                   <p className="last-table-list">Produtos mais vendidos</p>
