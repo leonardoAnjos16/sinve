@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiURL = 'https://sinve-back-production.up.railway.app/';
+const apiURL = 'http://ec2-54-89-160-231.compute-1.amazonaws.com:5500/';
 
 const api = axios.create({
   withCredentials: false,
