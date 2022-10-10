@@ -1,13 +1,14 @@
 import React, { useEffect, ChangeEvent, useState } from 'react';
-import { InfoCircleOutlined, CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
-
+import {
+  InfoCircleOutlined, CaretUpOutlined, CaretDownOutlined, ConsoleSqlOutlined,
+} from '@ant-design/icons';
 import {
   Navbar, SalesAreaChart, SalesPieChart, SalesBarChart,
 } from '../../components';
 import { CardsContainer, Container, ElementsContainer } from './style';
 
 import { SalesAPI } from '../../api/salesAPI/SalesAPI';
-import { getBarChartData } from './functions';
+import { getBarChartData, getPieChartData } from './functions';
 import type { DataType } from '../../utils/typings/unionTypes';
 
 import './styles.css';
@@ -17,6 +18,9 @@ export const SalesPage: React.FC = () => {
 
   const [productsPerCategory, setProductsPerCategory] = useState<DataType>('always');
   const [barChartData, setBarChartData] = useState<any[]>([]);
+  const [pieChartData, setPieChartData] = useState<any[]>([]);
+  const [totalAmount, setTotalAmount] = useState<any>();
+  const [totalSold, setTotalSold] = useState<any>();
 
   const [salesPerCategory, setSalesPerCategory] = useState<DataType>('always');
 
@@ -26,6 +30,26 @@ export const SalesPage: React.FC = () => {
         setBarChartData(getBarChartData(result));
       });
   }, [productsPerCategory]);
+
+  useEffect(() => {
+    SalesAPI.getDataByCategory(productsPerCategory)
+      .then((res) => {
+        setPieChartData(getPieChartData(res));
+        setTotalAmount(getPieChartData(res).map((item) => item.amount)
+          .reduce((prev, curr) => prev + curr, 0));
+        setTotalSold(getPieChartData(res).map((item) => item.sold)
+          .reduce((prev, curr) => prev + curr, 0));
+      });
+  }, [productsPerCategory]);
+
+  // useEffect(() => {
+  // setTotalAmount(pieChartData.map((item) => item.amount).reduce((prev, curr) => prev + curr, 0));
+  // }, [productsPerCategory]);
+
+  console.log(pieChartData);
+  console.log(barChartData);
+  console.log(totalAmount);
+  console.log(totalSold);
 
   const pieCharData = [
     {
@@ -185,15 +209,18 @@ export const SalesPage: React.FC = () => {
                   </div>
                 </nav>
 
-                <h2 className="val">R$ 126,560</h2>
+                <h2 className="val">
+                  R$
+                  {totalAmount}
+                </h2>
                 <div className="table_div">
                   <div className="graph">
-                    <SalesPieChart data={pieData} />
+                    <SalesPieChart data={pieCharData} />
                   </div>
                   <table className="table">
                     <tbody>
                       {
-                        pieData.map((val) => (
+                        pieChartData.map((val) => (
                           <tr>
                             <td>
                               {' '}
@@ -206,13 +233,13 @@ export const SalesPage: React.FC = () => {
                               {val.category}
                             </td>
                             <td className="td_color">
-                              {val.percent}
+                              {(val.sold / totalSold) * 100}
                               {' '}
                               %
                             </td>
                             <td>
                               R$
-                              {val.value}
+                              {val.amount}
                             </td>
                           </tr>
 

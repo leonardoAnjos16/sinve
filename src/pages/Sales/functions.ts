@@ -17,3 +17,15 @@ export const getBarChartData = (data: any) => {
 
   return barChartData;
 };
+
+export const getPieChartData = (data: any) => {
+  const pieChartData: any[] = [];
+  Object.entries(data.categorias).forEach(([key, value]: any) => {
+    pieChartData.push({
+      category: key,
+      sold: value.quantidadeVendida,
+      amount: value.faturamento,
+    });
+  });
+  return pieChartData;
+};
