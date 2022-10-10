@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  Input,
+} from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
 import { ArrowUp } from '../../assets/icons';
 import { InputSinve } from '../InputSinve';
 
@@ -29,9 +33,16 @@ export const ShowProductHistory: React.FC<ShowProductHistoryProps> = ({ width, o
       {
         [1, 2, 3, 4].map(() => (
           <InfoContainer>
-            <InputSinve width="15%" title="Mês/Ano" isShowHistory />
-            <InputSinve width="40%" title="Quantidade de entrada" isShowHistory />
-            <InputSinve width="40%" title="Quantidade de saída" isShowHistory />
+            <InputSinve isSelectDate title="" width="30%" />
+            <Input style={{
+              width: '10%',
+            }}
+            />
+            <Input />
+            <DeleteOutlined style={{
+              cursor: 'pointer',
+            }}
+            />
           </InfoContainer>
         ))
       }

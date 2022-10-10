@@ -15,12 +15,13 @@ interface InputSinveProps {
   isSelectDate?: boolean;
   isShowHistory?: boolean;
   isSelectable?: boolean
+  withMargin?: boolean;
 }
 
 export const InputSinve: React.FC<InputSinveProps> = ({
-  width, title, isSelectDate, isShowHistory, isSelectable,
+  width, title, isSelectDate, isShowHistory, isSelectable, withMargin,
 }) => (
-  <Container width={width}>
+  <Container width={width} withMargin={withMargin}>
     <TitleRegisterProduct isShowHistory={isShowHistory}>{title}</TitleRegisterProduct>
 
     {

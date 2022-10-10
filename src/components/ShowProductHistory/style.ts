@@ -37,11 +37,12 @@ export const TitleContainer = styled.div`
 `;
 
 export const InfoContainer = styled.div`
-    width: 94%;
+    width: 88%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    gap: 16px;
 `;
 
 export const Title = styled.p`

@@ -34,17 +34,17 @@ export const RegisterProduct: React.FC = () => {
         <ProductContainer>
 
           <TopProductContainer>
-            <InputSinve width="18%" title="Código do item" />
-            <InputSinve width="45%" title="Produto" />
-            <InputSinve width="20%" title="Categoria" />
-            <InputSinve width="20%" title="Quantidade" />
+            <InputSinve width="18%" title="Código do item" withMargin />
+            <InputSinve width="45%" title="Produto" withMargin />
+            <InputSinve width="20%" title="Categoria" withMargin />
+            <InputSinve width="20%" title="Quantidade" withMargin />
           </TopProductContainer>
 
           <TopProductContainer>
-            <InputSinve width="25%" title="Data de Entrada" isSelectDate />
-            <InputSinve width="25%" title="Data de Validade" isSelectDate />
-            <InputSinve width="25%" title="Preço de Venda" />
-            <InputSinve width="25%" title="Preço de Compra" />
+            <InputSinve width="25%" title="Data de Entrada" isSelectDate withMargin />
+            <InputSinve width="25%" title="Data de Validade" isSelectDate withMargin />
+            <InputSinve width="25%" title="Preço de Venda" withMargin />
+            <InputSinve width="25%" title="Preço de Compra" withMargin />
           </TopProductContainer>
 
         </ProductContainer>

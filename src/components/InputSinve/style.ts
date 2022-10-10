@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface ContainerProps {
     width: string
+    withMargin?: boolean;
 }
 
 interface RegisterProductProps {
@@ -16,7 +17,7 @@ export const Container = styled.div<ContainerProps>`
     flex-direction: column;
     align-items: flex-start;
 
-    margin-bottom: 8px !important;
+    margin-bottom: ${({ withMargin }) => (withMargin ? '8px !important' : '0px !important')};
 `;
 
 export const TitleRegisterProduct = styled.p<RegisterProductProps>`
