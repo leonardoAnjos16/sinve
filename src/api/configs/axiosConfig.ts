@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiURL = 'http://localhost:5500/';
+const apiURL = 'https://sinve-back-production.up.railway.app/';
 
 const api = axios.create({
   withCredentials: false,
