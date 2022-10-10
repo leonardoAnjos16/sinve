@@ -21,7 +21,7 @@ export const InsideContainer = styled.div`
 `;
 
 export const LeftInsideContainer = styled.div`
-    width:  373px;
+    width:  500px;
     height: 100%;
 
     display: flex;
