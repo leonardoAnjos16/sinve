@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from 'antd';
 
 interface ContainerProps {
     width: string
@@ -49,5 +50,5 @@ export const Title = styled.p`
     font-weight: 600;
     font-size: 34px;
     line-height: 39.84px;
-    color: ${(props) => props.theme.colors.pineTree}
+    color: ${(props) => props.theme.colors.pineTree};
 `;

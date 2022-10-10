@@ -1,8 +1,9 @@
 import React from 'react';
 import {
+  Button,
   Input,
 } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { ArrowUp } from '../../assets/icons';
 import { InputSinve } from '../InputSinve';
 
