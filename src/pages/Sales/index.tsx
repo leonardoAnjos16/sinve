@@ -47,9 +47,9 @@ export const SalesPage: React.FC = () => {
   // }, [productsPerCategory]);
 
   console.log(pieChartData);
-  console.log(barChartData);
-  console.log(totalAmount);
-  console.log(totalSold);
+  // console.log(barChartData);
+  // console.log(totalAmount);
+  // console.log(totalSold);
 
   const pieCharData = [
     {
@@ -215,7 +215,12 @@ export const SalesPage: React.FC = () => {
                 </h2>
                 <div className="table_div">
                   <div className="graph">
-                    <SalesPieChart data={pieCharData} />
+                    <SalesPieChart
+                      data={pieChartData.map(({ category, sold }) => ({
+                        category,
+                        value: sold / totalSold,
+                      }))}
+                    />
                   </div>
                   <table className="table">
                     <tbody>
