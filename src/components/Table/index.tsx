@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Space, Table, Tag, DatePicker, Badge,
 } from 'antd';
@@ -7,7 +7,9 @@ import {
   Container, LinkCustom, Inventory, ArrowDown, ArrowUp,
 } from './style';
 
-interface DataType {
+import { getData, HistoryAPI } from '../../api/historyAP/HistoryAPI';
+
+export interface HistoryDataType {
   key: string;
   item: number;
   product: string;
@@ -15,7 +17,7 @@ interface DataType {
   idealInventory: number;
 }
 
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<HistoryDataType> = [
   {
     title: 'Item',
     dataIndex: 'item',
@@ -64,33 +66,44 @@ const columns: ColumnsType<DataType> = [
     ),
   },
 ];
+// const data: HistoryDataType[] = [
+//   {
+//     key: '1',
+//     item: 1,
+//     product: 'Sapato',
+//     inventory: 1000,
+//     idealInventory: 1200,
+//   },
+//   {
+//     key: '2',
+//     item: 2,
+//     product: 'Máquina de lavar',
+//     inventory: 1450,
+//     idealInventory: 1500,
+//   },
+//   {
+//     key: '3',
+//     item: 3,
+//     product: 'Suporte para notebook',
+//     inventory: 2100,
+//     idealInventory: 2100,
+//   },
+// ];
 
-const data: DataType[] = [
-  {
-    key: '1',
-    item: 1,
-    product: 'Sapato',
-    inventory: 1000,
-    idealInventory: 1200,
-  },
-  {
-    key: '2',
-    item: 2,
-    product: 'Máquina de lavar',
-    inventory: 1450,
-    idealInventory: 1500,
-  },
-  {
-    key: '3',
-    item: 3,
-    product: 'Suporte para notebook',
-    inventory: 2100,
-    idealInventory: 2100,
-  },
-];
+export const TableComponent: React.FC = () => {
+  const [data, setData] = useState<HistoryDataType[]>([]);
 
-export const TableComponent: React.FC = () => (
-  <Container>
-    <Table style={{ width: '100%' }} columns={columns} dataSource={data} />
-  </Container>
-);
+  useEffect(() => {
+    HistoryAPI.getProducts()
+      .then((result) => {
+        console.log(result);
+        setData(getData(result));
+      });
+  }, []);
+
+  return (
+    <Container>
+      { data && <Table style={{ width: '100%' }} columns={columns} dataSource={data} /> }
+    </Container>
+  );
+};

@@ -40,7 +40,7 @@ export const SalesBarChart: React.FC<SalesBarChartProps> = ({ data }) => {
       .padding(0.1);
 
     const y = d3.scaleLinear()
-      .domain([0, 1200])
+      .domain([0, 5])
       .range([height - 30, 30]);
 
     const xAxis = (g: any) => g
