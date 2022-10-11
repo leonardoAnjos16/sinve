@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import api from '../../api/configs/axiosConfig';
 
 import {
   ButtonSinve, InputSinve, Navbar, HiddenInformation, ShowProductHistory,
@@ -15,13 +16,18 @@ export const RegisterProduct: React.FC = () => {
   const [showProvider, setShowProvider] = useState(false);
 
   const [code, setCode] = useState('');
-  const [product, setProduct] = useState('');
+  const [productName, setProductName] = useState('');
   const [category, setCategory] = useState('');
   const [quantity, setQuantity] = useState('');
   const [inProduct, setInProduct] = useState('');
   const [validity, setValidity] = useState('');
   const [salePrice, setSalePrice] = useState('');
   const [purchasePrice, setPurchasePrice] = useState('');
+
+  const [cnpj, setCnpj] = useState('');
+  const [providerName, setProviderName] = useState('');
+  const [timeToDelivery, setTimeToDelivery] = useState('');
+  const [providerPhone, setProviderPhone] = useState('');
 
   const didUserTapShowProductHistory = () => {
     setShowHistory(!showHistory);
@@ -36,7 +42,31 @@ export const RegisterProduct: React.FC = () => {
   };
 
   const didUserTapRegisterProduct = () => {
-    console.log(salePrice);
+    try {
+      const product = {
+        codigo: code,
+        nome: productName,
+        categoria: category,
+        quantidade: Number(quantity),
+        precoDeVenda: Number(salePrice),
+        precoDeCompra: Number(purchasePrice),
+        dataValidade: validity,
+        dataEntrada: inProduct,
+      };
+
+      const fornecedor = {
+        CNPJ: cnpj,
+        nomeFantasia: providerName,
+        prazoEntrega: Number(timeToDelivery),
+        telefone: providerPhone,
+      };
+
+      api.post('/cadastro-de-produto', {
+        product, fornecedor,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -59,7 +89,7 @@ export const RegisterProduct: React.FC = () => {
               title="Produto"
               withMargin
               placeholder="Lápis"
-              setData={setProduct}
+              setData={setProductName}
             />
             <InputSinve
               width="20%"
@@ -111,7 +141,18 @@ export const RegisterProduct: React.FC = () => {
       </RegisterContainer>
 
       {
-        showProvider ? <ShowProvider width="75%" onClick={didUserTapShowProvider} /> : (
+        showProvider ? (
+          <ShowProvider
+            width="75%"
+            onClick={didUserTapShowProvider}
+            states={{
+              setCNPJ: setCnpj,
+              setDelivery: setTimeToDelivery,
+              setName: setProviderName,
+              setPhone: setProviderPhone,
+            }}
+          />
+        ) : (
           <HiddenInformation
             width="75%"
             onClick={didUserTapShowProvider}
@@ -129,6 +170,5 @@ export const RegisterProduct: React.FC = () => {
         <ButtonSinve title="Cadastrar produto" onClick={didUserTapRegisterProduct} />
       </ButtonContainer>
     </Container>
-
   );
 };
