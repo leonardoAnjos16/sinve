@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { ArrowUp } from '../../assets/icons';
+import { Provider } from '../../interfaces/Provider';
 import { InputSinve } from '../InputSinve';
 import {
   Container, TitleContainer, Title, ContentContainer,
@@ -8,7 +9,9 @@ import {
 interface ShowProviderProps {
   width: string;
   onClick: Function;
-  states: SetStates;
+  setStates: SetStates;
+  states: States;
+  providers?: Provider[];
 }
 
 interface SetStates {
@@ -18,26 +21,75 @@ interface SetStates {
   setDelivery: Dispatch<SetStateAction<string>>;
 }
 
-export const ShowProvider: React.FC<ShowProviderProps> = ({ width, onClick, states }) => (
-  <Container width={width}>
+interface States {
+  cnpj: string;
+  providerName: string;
+  timeToDelivery: string;
+  providerPhone: string;
+}
 
-    <TitleContainer>
+export const ShowProvider: React.FC<ShowProviderProps> = ({
+  width, onClick, setStates, providers, states,
+}) => {
+  const didUserSelectCNPJ = (cnpj: string) => {
+    console.log(cnpj);
+    const newProviders = providers?.filter((provider) => provider.CNPJ === cnpj);
+    if (!newProviders) return;
+    const newProvider = newProviders[0];
+    setStates.setCNPJ(newProvider.CNPJ);
+    setStates.setName(newProvider.nomeFantasia);
+    setStates.setPhone(newProvider.telefone);
+    setStates.setDelivery(String(newProvider.prazoEntrega));
+  };
 
-      <Title>Informações do fornecedor</Title>
-      <ArrowUp
-        style={{
-          cursor: 'pointer',
-        }}
-        onClick={onClick}
-      />
-    </TitleContainer>
+  return (
+    <Container width={width}>
+      <TitleContainer>
 
-    <ContentContainer>
-      <InputSinve width="20%" title="CNPJ" withMargin setData={states.setCNPJ} />
-      <InputSinve width="35%" title="Nome Fantasia" withMargin setData={states.setName} />
-      <InputSinve width="15%" title="Telefone" withMargin setData={states.setPhone} />
-      <InputSinve width="30%" title="Prazo de entrega" withMargin setData={states.setDelivery} />
-    </ContentContainer>
+        <Title>Informações do fornecedor</Title>
+        <ArrowUp
+          style={{
+            cursor: 'pointer',
+          }}
+          onClick={onClick}
+        />
+      </TitleContainer>
 
-  </Container>
-);
+      <ContentContainer>
+        <InputSinve
+          width="20%"
+          title="CNPJ"
+          withMargin
+          setData={setStates.setCNPJ}
+          isSelectable
+          providers={providers}
+          onSelect={didUserSelectCNPJ}
+          data={states.cnpj}
+        />
+        <InputSinve
+          width="35%"
+          title="Nome Fantasia"
+          withMargin
+          setData={setStates.setName}
+          data={states.providerName}
+        />
+        <InputSinve
+          width="15%"
+          title="Telefone"
+          withMargin
+          setData={setStates.setPhone}
+          data={states.providerPhone}
+        />
+        <InputSinve
+          width="30%"
+          title="Prazo de entrega"
+          withMargin
+          setData={setStates.setDelivery}
+          data={states.timeToDelivery}
+        />
+      </ContentContainer>
+
+    </Container>
+
+  );
+};

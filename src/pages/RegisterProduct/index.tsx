@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import api from '../../api/configs/axiosConfig';
 
@@ -6,6 +6,7 @@ import {
   ButtonSinve, InputSinve, Navbar, HiddenInformation, ShowProductHistory,
 } from '../../components';
 import { ShowProvider } from '../../components/ShowProvider';
+import { Provider } from '../../interfaces/Provider';
 import {
   RegisterContainer, Title, ProductContainer, TopProductContainer, Container, ButtonContainer,
 } from './style';
@@ -26,8 +27,10 @@ export const RegisterProduct: React.FC = () => {
 
   const [cnpj, setCnpj] = useState('');
   const [providerName, setProviderName] = useState('');
-  const [timeToDelivery, setTimeToDelivery] = useState('');
+  const [timeToDelivery, setTimeToDelivery] = useState<string>('');
   const [providerPhone, setProviderPhone] = useState('');
+
+  const [providers, setProviders] = useState<Provider[]>([]);
 
   const didUserTapShowProductHistory = () => {
     setShowHistory(!showHistory);
@@ -41,7 +44,30 @@ export const RegisterProduct: React.FC = () => {
     setShowProvider(!showProvider);
   };
 
-  const didUserTapRegisterProduct = () => {
+  const didUserSelectValidity = (currentValidity: string) => {
+    setValidity(currentValidity);
+  };
+
+  const didUserSelectInDate = (currentInDate: string) => {
+    setInProduct(currentInDate);
+  };
+
+  const getProviders = async () => {
+    try {
+      const response = await api.get('/fornecedor');
+      const { data } = response;
+      const allProviders: Provider[] = data;
+      setProviders(allProviders);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProviders();
+  }, []);
+
+  const didUserTapRegisterProduct = async () => {
     try {
       const product = {
         codigo: code,
@@ -61,9 +87,13 @@ export const RegisterProduct: React.FC = () => {
         telefone: providerPhone,
       };
 
-      api.post('/cadastro-de-produto', {
+      const newRegisterProduct = {
         product, fornecedor,
-      });
+      };
+
+      console.log(newRegisterProduct);
+
+      await api.post('/cadastro-de-produto', newRegisterProduct);
     } catch (error) {
       console.log(error);
     }
@@ -112,6 +142,7 @@ export const RegisterProduct: React.FC = () => {
               title="Data de Entrada"
               isSelectDate
               withMargin
+              onSelect={didUserSelectInDate}
               setData={setInProduct}
             />
             <InputSinve
@@ -119,6 +150,7 @@ export const RegisterProduct: React.FC = () => {
               title="Data de Validade"
               isSelectDate
               withMargin
+              onSelect={didUserSelectValidity}
               setData={setValidity}
             />
             <InputSinve
@@ -145,11 +177,15 @@ export const RegisterProduct: React.FC = () => {
           <ShowProvider
             width="75%"
             onClick={didUserTapShowProvider}
-            states={{
+            setStates={{
               setCNPJ: setCnpj,
               setDelivery: setTimeToDelivery,
               setName: setProviderName,
               setPhone: setProviderPhone,
+            }}
+            providers={providers}
+            states={{
+              cnpj, timeToDelivery, providerName, providerPhone,
             }}
           />
         ) : (
