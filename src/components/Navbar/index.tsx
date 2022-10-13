@@ -18,6 +18,7 @@ export const Navbar: React.FC = () => (
         />
         <Link to="/"><TypeToChoice>Estoque</TypeToChoice></Link>
         <Link to="/vendas"><TypeToChoice>Vendas</TypeToChoice></Link>
+        <Link to="/fornecedores"><TypeToChoice>Fornecedores</TypeToChoice></Link>
       </LeftInsideContainer>
       <RightInsideContainer>
         <Notification />

@@ -6,5 +6,6 @@ export const theme = {
     background: '#F4F0EC',
     orange: '#FF4D4F',
     polarGreen: '#092B00',
+    claret: '#8B1A47',
   },
 };

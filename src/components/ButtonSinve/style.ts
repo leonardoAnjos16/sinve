@@ -20,4 +20,8 @@ export const ButtonStyled = styled.button<ContainerProps>`
 
   margin: ${(props) => (props.margin ? props.margin : '0 auto')} !important;
 
+  :hover {
+    background-color: ${(props) => props.theme.colors.claret};
+  }
+
 `;
