@@ -69,7 +69,7 @@ export const RegisterProduct: React.FC = () => {
 
   const didUserTapRegisterProduct = async () => {
     try {
-      const product = {
+      const produto = {
         codigo: code,
         nome: productName,
         categoria: category,
@@ -88,12 +88,12 @@ export const RegisterProduct: React.FC = () => {
       };
 
       const newRegisterProduct = {
-        product, fornecedor,
+        produto, fornecedor,
       };
 
-      console.log(newRegisterProduct);
-
       await api.post('/cadastro-de-produto', newRegisterProduct);
+
+      history.goBack();
     } catch (error) {
       console.log(error);
     }
