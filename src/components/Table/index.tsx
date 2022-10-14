@@ -17,6 +17,10 @@ export interface HistoryDataType {
   idealInventory: number;
 }
 
+export interface TableComponentProps {
+  filter: 'falta' | 'sobrando' | 'ideal' | null;
+}
+
 const columns: ColumnsType<HistoryDataType> = [
   {
     title: 'Item',
@@ -90,20 +94,33 @@ const columns: ColumnsType<HistoryDataType> = [
 //   },
 // ];
 
-export const TableComponent: React.FC = () => {
+export const TableComponent: React.FC<TableComponentProps> = ({ filter }) => {
   const [data, setData] = useState<HistoryDataType[]>([]);
+  const [dataFiltered, setDataFiltered] = useState<HistoryDataType[]>([]);
 
   useEffect(() => {
     HistoryAPI.getProducts()
       .then((result) => {
-        console.log(result);
         setData(getData(result));
+        setDataFiltered(getData(result));
       });
   }, []);
 
+  useEffect(() => {
+    let auxData;
+    if (filter === 'falta') {
+      auxData = data.filter((element) => element.inventory < element.idealInventory);
+    } else if (filter === 'ideal') {
+      auxData = data.filter((element) => element.inventory === element.idealInventory);
+    } else {
+      auxData = data.filter((element) => element.inventory > element.idealInventory);
+    }
+    setDataFiltered(auxData);
+  }, [filter]);
+
   return (
     <Container>
-      { data && <Table style={{ width: '100%' }} columns={columns} dataSource={data} /> }
+      {data && <Table style={{ width: '100%' }} columns={columns} dataSource={dataFiltered} />}
     </Container>
   );
 };
