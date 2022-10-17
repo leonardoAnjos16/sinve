@@ -4,6 +4,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import {
   DatePicker, DatePickerProps, Select,
 } from 'antd';
+import moment from 'moment';
 import {
   Container, TitleRegisterProduct, SinveInput,
 } from './style';
@@ -23,11 +24,13 @@ interface InputSinveProps {
   providers?: Provider[];
   onSelect?: Function;
   data?: string;
+  productHistory?: string;
 }
 
 export const InputSinve: React.FC<InputSinveProps> = ({
   width, title, isSelectDate, isShowHistory, isSelectable,
   withMargin, placeholder, setData, providers, onSelect, data,
+  productHistory,
 }) => {
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     if (onSelect) onSelect(dateString);
@@ -68,6 +71,7 @@ export const InputSinve: React.FC<InputSinveProps> = ({
               width: '100%',
             }}
             onChange={onChange}
+            defaultValue={productHistory ? moment(productHistory, 'YYYY/MM/DD') : moment()}
           />
         )
       }

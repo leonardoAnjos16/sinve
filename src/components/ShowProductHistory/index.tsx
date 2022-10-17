@@ -10,13 +10,18 @@ import { InputSinve } from '../InputSinve';
 import {
   Container, TitleContainer, Title, InfoContainer,
 } from './style';
+import { Entrance } from '../../interfaces/Entrance';
 
 interface ShowProductHistoryProps {
   width: string
   onClick: Function;
+  products: Entrance[];
 }
 
-export const ShowProductHistory: React.FC<ShowProductHistoryProps> = ({ width, onClick }) => (
+export const ShowProductHistory: React.FC<ShowProductHistoryProps> = ({
+  width,
+  onClick, products,
+}) => (
   <Container width={width}>
 
     <TitleContainer>
@@ -32,7 +37,7 @@ export const ShowProductHistory: React.FC<ShowProductHistoryProps> = ({ width, o
 
     <>
       {
-        [1, 2, 3, 4].map(() => (
+        products.map(() => (
           <InfoContainer>
             <InputSinve isSelectDate title="" width="30%" />
             <Input style={{

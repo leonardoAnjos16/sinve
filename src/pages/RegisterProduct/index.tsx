@@ -32,6 +32,8 @@ export const RegisterProduct: React.FC = () => {
   const [providerPhone, setProviderPhone] = useState('');
 
   const [providers, setProviders] = useState<Provider[]>([]);
+  const [allEntrances, setAllEntrances] = useState<Entrance[]>([]);
+  const [entrancesToShow, setEntrancesToShow] = useState<Entrance[]>([]);
 
   const didUserTapShowProductHistory = () => {
     setShowHistory(!showHistory);
@@ -68,6 +70,8 @@ export const RegisterProduct: React.FC = () => {
     try {
       const response = await api.get('/entradas');
       const entrances: Entrance[] = response.data;
+      setAllEntrances(entrances);
+      setEntrancesToShow(entrances);
     } catch (error) {
       console.log(error);
     }
@@ -209,7 +213,7 @@ export const RegisterProduct: React.FC = () => {
       }
 
       {
-        showHistory ? <ShowProductHistory width="75%" onClick={didUserTapShowProductHistory} />
+        showHistory ? <ShowProductHistory width="75%" onClick={didUserTapShowProductHistory} products={entrancesToShow} />
           : <HiddenInformation width="75%" onClick={didUserTapShowProductHistory} title="Histórico de produto" />
       }
       <ButtonContainer>
