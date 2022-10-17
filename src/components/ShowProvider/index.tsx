@@ -32,7 +32,6 @@ export const ShowProvider: React.FC<ShowProviderProps> = ({
   width, onClick, setStates, providers, states,
 }) => {
   const didUserSelectCNPJ = (cnpj: string) => {
-    console.log(cnpj);
     const newProviders = providers?.filter((provider) => provider.CNPJ === cnpj);
     if (!newProviders) return;
     const newProvider = newProviders[0];

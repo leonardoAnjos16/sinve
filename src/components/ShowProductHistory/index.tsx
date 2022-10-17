@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button,
   Input,
@@ -21,38 +21,45 @@ interface ShowProductHistoryProps {
 export const ShowProductHistory: React.FC<ShowProductHistoryProps> = ({
   width,
   onClick, products,
-}) => (
-  <Container width={width}>
+}) => {
+  useEffect(() => {
+    // console.log(products);
+  }, [products]);
 
-    <TitleContainer>
+  return (
+    <Container width={width}>
 
-      <Title>Histórico de produto</Title>
-      <ArrowUp
-        style={{
-          cursor: 'pointer',
-        }}
-        onClick={onClick}
-      />
-    </TitleContainer>
+      <TitleContainer>
 
-    <>
-      {
-        products.map(() => (
-          <InfoContainer>
-            <InputSinve isSelectDate title="" width="30%" />
-            <Input style={{
-              width: '10%',
-            }}
-            />
-            <Input />
-            <DeleteOutlined style={{
-              cursor: 'pointer',
-            }}
-            />
-          </InfoContainer>
-        ))
-      }
-    </>
+        <Title>Histórico de produto</Title>
+        <ArrowUp
+          style={{
+            cursor: 'pointer',
+          }}
+          onClick={onClick}
+        />
+      </TitleContainer>
 
-  </Container>
-);
+      <>
+        {
+
+          products.map((product) => (
+            <InfoContainer>
+              <InputSinve isSelectDate title="" width="30%" />
+              <Input
+                style={{
+                  width: '10%',
+                }}
+                disabled
+                defaultValue={String(product.quantidade)}
+              />
+              <Input disabled defaultValue={product.nome} />
+            </InfoContainer>
+          ))
+        }
+      </>
+
+    </Container>
+
+  );
+};

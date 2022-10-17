@@ -71,16 +71,25 @@ export const RegisterProduct: React.FC = () => {
       const response = await api.get('/entradas');
       const entrances: Entrance[] = response.data;
       setAllEntrances(entrances);
-      setEntrancesToShow(entrances);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const filterEntrancesByCode = () => {
+    const filteredEntrances = allEntrances.filter((entrance) => entrance.codigo === code);
+    setEntrancesToShow(filteredEntrances);
+  };
+
   useEffect(() => {
     getProviders();
     getEntrances();
+    filterEntrancesByCode();
   }, []);
+
+  useEffect(() => {
+    filterEntrancesByCode();
+  }, [code]);
 
   const didUserTapRegisterProduct = async () => {
     try {

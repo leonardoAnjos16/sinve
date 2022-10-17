@@ -96,14 +96,13 @@ export const TableComponent: React.FC = () => {
   useEffect(() => {
     HistoryAPI.getProducts()
       .then((result) => {
-        console.log(result);
         setData(getData(result));
       });
   }, []);
 
   return (
     <Container>
-      { data && <Table style={{ width: '100%' }} columns={columns} dataSource={data} /> }
+      {data && <Table style={{ width: '100%' }} columns={columns} dataSource={data} />}
     </Container>
   );
 };
