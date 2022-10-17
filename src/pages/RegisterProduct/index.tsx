@@ -63,8 +63,18 @@ export const RegisterProduct: React.FC = () => {
     }
   };
 
+  const getEntrances = async () => {
+    try {
+      const response = await api.get('/entradas');
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getProviders();
+    getEntrances();
   }, []);
 
   const didUserTapRegisterProduct = async () => {
