@@ -6,6 +6,7 @@ import {
   ButtonSinve, InputSinve, Navbar, HiddenInformation, ShowProductHistory,
 } from '../../components';
 import { ShowProvider } from '../../components/ShowProvider';
+import { Entrance } from '../../interfaces/Entrance';
 import { Provider } from '../../interfaces/Provider';
 import {
   RegisterContainer, Title, ProductContainer, TopProductContainer, Container, ButtonContainer,
@@ -66,7 +67,7 @@ export const RegisterProduct: React.FC = () => {
   const getEntrances = async () => {
     try {
       const response = await api.get('/entradas');
-      console.log(response.data);
+      const entrances: Entrance[] = response.data;
     } catch (error) {
       console.log(error);
     }
