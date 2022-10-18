@@ -13,7 +13,7 @@ const { Option } = Select;
 
 interface InputSinveProps {
   width: string;
-  title: string;
+  title?: string;
   isSelectDate?: boolean;
   isShowHistory?: boolean;
   isSelectable?: boolean
@@ -23,19 +23,23 @@ interface InputSinveProps {
   providers?: Provider[];
   onSelect?: Function;
   data?: string;
+  marginLeft?: string;
 }
 
 export const InputSinve: React.FC<InputSinveProps> = ({
   width, title, isSelectDate, isShowHistory, isSelectable,
   withMargin, placeholder, setData, providers, onSelect, data,
+  marginLeft,
 }) => {
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     if (onSelect) onSelect(dateString);
   };
 
   return (
-    <Container width={width} withMargin={withMargin}>
-      <TitleRegisterProduct isShowHistory={isShowHistory}>{title}</TitleRegisterProduct>
+    <Container width={width} withMargin={withMargin} marginLeft={marginLeft}>
+      {title
+        ? <TitleRegisterProduct isShowHistory={isShowHistory}>{title}</TitleRegisterProduct>
+        : <></>}
 
       {
         isSelectable && (

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React, { useEffect, useState } from 'react';
 import {
   Space, Table, Tag, DatePicker, Badge,
@@ -15,10 +16,13 @@ export interface HistoryDataType {
   product: string;
   inventory: number;
   idealInventory: number;
+  category: string;
 }
 
 export interface TableComponentProps {
   filter: 'falta' | 'sobrando' | 'ideal' | null;
+  setTypesOfCategory?: any;
+  selectedCategory?: any;
 }
 
 const columns: ColumnsType<HistoryDataType> = [
@@ -94,7 +98,9 @@ const columns: ColumnsType<HistoryDataType> = [
 //   },
 // ];
 
-export const TableComponent: React.FC<TableComponentProps> = ({ filter }) => {
+export const TableComponent: React.FC<TableComponentProps> = ({
+  filter, setTypesOfCategory, selectedCategory,
+}) => {
   const [data, setData] = useState<HistoryDataType[]>([]);
   const [dataFiltered, setDataFiltered] = useState<HistoryDataType[]>([]);
 
@@ -112,11 +118,36 @@ export const TableComponent: React.FC<TableComponentProps> = ({ filter }) => {
       auxData = data.filter((element) => element.inventory < element.idealInventory);
     } else if (filter === 'ideal') {
       auxData = data.filter((element) => element.inventory === element.idealInventory);
-    } else {
+    } else if (filter === 'sobrando') {
       auxData = data.filter((element) => element.inventory > element.idealInventory);
+    } else {
+      auxData = data;
     }
+    console.log(selectedCategory);
+    if (selectedCategory) {
+      auxData = auxData.filter((element) => element.category === selectedCategory);
+    }
+
     setDataFiltered(auxData);
-  }, [filter]);
+  }, [filter, selectedCategory]);
+
+  useEffect(() => {
+    loadTypes();
+  }, [data]);
+
+  const loadTypes = async () => {
+    const auxData: any[] = [];
+    const auxKeys: any[] = [];
+    // eslint-disable-next-line array-callback-return
+    const wait = data.map((element) => {
+      if (!auxKeys.includes(element.category)) {
+        auxData.push({ label: element.category, value: element.category });
+        auxKeys.push(element.category);
+      }
+    });
+    await Promise.all(wait);
+    setTypesOfCategory(auxData);
+  };
 
   return (
     <Container>

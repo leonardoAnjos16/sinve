@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 interface ContainerProps {
-    width: string
-    withMargin?: boolean;
-    marginLeft?: string;
+  width: string
+  withMargin?: boolean;
+  marginLeft?: string;
 }
 
 interface RegisterProductProps {
-    isShowHistory?: boolean;
+  isShowHistory?: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
