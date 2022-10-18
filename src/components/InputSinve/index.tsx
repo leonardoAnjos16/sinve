@@ -14,7 +14,7 @@ const { Option } = Select;
 
 interface InputSinveProps {
   width: string;
-  title: string;
+  title?: string;
   isSelectDate?: boolean;
   isShowHistory?: boolean;
   isSelectable?: boolean
