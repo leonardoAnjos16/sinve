@@ -7,7 +7,7 @@ export const getData = (data: any): HistoryDataType[] => {
   Object.entries(data).forEach(([key, value]: any, index) => {
     historyData.push({
       key: `${index}`,
-      item: index + 1,
+      item: (`0000${index + 1}`).slice(-4),
       product: value.nome,
       inventory: value.quantidade,
       idealInventory: value.estoqueIdeal,

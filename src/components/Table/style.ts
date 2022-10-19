@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
+import { Badge } from 'antd';
+import '@fontsource/roboto-mono';
 
 interface InventoryProps {
-  isYellow: boolean
+  color: string
 }
 
 export const Container = styled.div`
@@ -20,13 +22,17 @@ export const Container = styled.div`
 
 export const LinkCustom = styled.a``;
 
+export const BadgeCustom = styled(Badge)`
+  font-family: "Roboto Mono" !important;
+`;
+
 export const ArrowDown = styled(CaretDownOutlined)`
-  color: red;
+  color: black;
   margin-left: 8px !important;
 `;
 
 export const ArrowUp = styled(CaretUpOutlined)`
-  color: red;
+  color: black;
   margin-left: 8px !important;
 
 `;
@@ -34,7 +40,7 @@ export const ArrowUp = styled(CaretUpOutlined)`
 export const Inventory = styled.div<InventoryProps>`
   width: 100%;
   height: 100%;
-  background-color: ${(props) => (props.isYellow ? '#B5DDB0' : '#FFCCC7')} ;
+  background-color: ${(props) => props.color} ;
   position: absolute;
   top: 0px;
   display: flex;

@@ -1,18 +1,19 @@
 /* eslint-disable consistent-return */
 import React, { useEffect, useState } from 'react';
 import {
-  Space, Table, Tag, DatePicker, Badge,
+  Space, Table,
 } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import {
-  Container, LinkCustom, Inventory, ArrowDown, ArrowUp,
+  Container, LinkCustom, Inventory, ArrowDown, ArrowUp, BadgeCustom,
 } from './style';
 
 import { getData, HistoryAPI } from '../../api/historyAP/HistoryAPI';
+import '@fontsource/roboto-mono';
 
 export interface HistoryDataType {
   key: string;
-  item: number;
+  item: string;
   product: string;
   inventory: number;
   idealInventory: number;
@@ -30,7 +31,7 @@ const columns: ColumnsType<HistoryDataType> = [
     title: 'Item',
     dataIndex: 'item',
     key: 'item',
-    render: (item) => <Badge style={{ background: '#8B1A47' }} count={item} />,
+    render: (item) => <BadgeCustom style={{ background: '#C2CFB2', color: 'black', fontFamily: 'Roboto Mono' }} count={item} />,
   },
   {
     title: 'Produto',
@@ -42,7 +43,12 @@ const columns: ColumnsType<HistoryDataType> = [
     dataIndex: 'inventory',
     key: 'inventory',
     render: (item, everything) => (
-      <Inventory isYellow={everything.inventory === everything.idealInventory}>
+      <Inventory color={
+        // eslint-disable-next-line no-nested-ternary
+        everything.inventory > everything.idealInventory ? '#C1A8F8'
+          : (everything.inventory < everything.idealInventory ? '#A8C3F8' : 'transparent')
+      }
+      >
         {item}
         {everything.inventory > everything.idealInventory && <ArrowUp />}
         {everything.inventory < everything.idealInventory && <ArrowDown />}
