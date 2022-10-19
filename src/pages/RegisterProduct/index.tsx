@@ -6,6 +6,7 @@ import {
   ButtonSinve, InputSinve, Navbar, HiddenInformation, ShowProductHistory,
 } from '../../components';
 import { ShowProvider } from '../../components/ShowProvider';
+import { Entrance } from '../../interfaces/Entrance';
 import { Provider } from '../../interfaces/Provider';
 import {
   RegisterContainer, Title, ProductContainer, TopProductContainer, Container, ButtonContainer,
@@ -31,6 +32,8 @@ export const RegisterProduct: React.FC = () => {
   const [providerPhone, setProviderPhone] = useState('');
 
   const [providers, setProviders] = useState<Provider[]>([]);
+  const [allEntrances, setAllEntrances] = useState<Entrance[]>([]);
+  const [entrancesToShow, setEntrancesToShow] = useState<Entrance[]>([]);
 
   const didUserTapShowProductHistory = () => {
     setShowHistory(!showHistory);
@@ -63,9 +66,30 @@ export const RegisterProduct: React.FC = () => {
     }
   };
 
+  const getEntrances = async () => {
+    try {
+      const response = await api.get('/entradas');
+      const entrances: Entrance[] = response.data;
+      setAllEntrances(entrances);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const filterEntrancesByCode = () => {
+    const filteredEntrances = allEntrances.filter((entrance) => entrance.codigo === code);
+    setEntrancesToShow(filteredEntrances);
+  };
+
   useEffect(() => {
     getProviders();
+    getEntrances();
+    filterEntrancesByCode();
   }, []);
+
+  useEffect(() => {
+    filterEntrancesByCode();
+  }, [code]);
 
   const didUserTapRegisterProduct = async () => {
     try {
@@ -198,7 +222,7 @@ export const RegisterProduct: React.FC = () => {
       }
 
       {
-        showHistory ? <ShowProductHistory width="75%" onClick={didUserTapShowProductHistory} />
+        showHistory ? <ShowProductHistory width="75%" onClick={didUserTapShowProductHistory} products={entrancesToShow} />
           : <HiddenInformation width="75%" onClick={didUserTapShowProductHistory} title="Histórico de produto" />
       }
       <ButtonContainer>

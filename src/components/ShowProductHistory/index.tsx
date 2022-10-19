@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button,
   Input,
@@ -10,44 +10,56 @@ import { InputSinve } from '../InputSinve';
 import {
   Container, TitleContainer, Title, InfoContainer,
 } from './style';
+import { Entrance } from '../../interfaces/Entrance';
 
 interface ShowProductHistoryProps {
   width: string
   onClick: Function;
+  products: Entrance[];
 }
 
-export const ShowProductHistory: React.FC<ShowProductHistoryProps> = ({ width, onClick }) => (
-  <Container width={width}>
+export const ShowProductHistory: React.FC<ShowProductHistoryProps> = ({
+  width,
+  onClick, products,
+}) => {
+  useEffect(() => {
+    // console.log(products);
+  }, [products]);
 
-    <TitleContainer>
+  return (
+    <Container width={width}>
 
-      <Title>Histórico de produto</Title>
-      <ArrowUp
-        style={{
-          cursor: 'pointer',
-        }}
-        onClick={onClick}
-      />
-    </TitleContainer>
+      <TitleContainer>
 
-    <>
-      {
-        [1, 2, 3, 4].map(() => (
-          <InfoContainer>
-            <InputSinve isSelectDate title="" width="30%" />
-            <Input style={{
-              width: '10%',
-            }}
-            />
-            <Input />
-            <DeleteOutlined style={{
-              cursor: 'pointer',
-            }}
-            />
-          </InfoContainer>
-        ))
-      }
-    </>
+        <Title>Histórico de produto</Title>
+        <ArrowUp
+          style={{
+            cursor: 'pointer',
+          }}
+          onClick={onClick}
+        />
+      </TitleContainer>
 
-  </Container>
-);
+      <>
+        {
+
+          products.map((product) => (
+            <InfoContainer>
+              <InputSinve isSelectDate title="" width="30%" />
+              <Input
+                style={{
+                  width: '10%',
+                }}
+                disabled
+                defaultValue={String(product.quantidade)}
+              />
+              <Input disabled defaultValue={product.nome} />
+            </InfoContainer>
+          ))
+        }
+      </>
+
+    </Container>
+
+  );
+};

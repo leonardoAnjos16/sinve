@@ -4,6 +4,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import {
   DatePicker, DatePickerProps, Select,
 } from 'antd';
+import moment from 'moment';
 import {
   Container, TitleRegisterProduct, SinveInput,
 } from './style';
@@ -24,12 +25,15 @@ interface InputSinveProps {
   onSelect?: Function;
   data?: string;
   marginLeft?: string;
+  productHistory?: string;
+  password?: boolean;
 }
 
 export const InputSinve: React.FC<InputSinveProps> = ({
   width, title, isSelectDate, isShowHistory, isSelectable,
   withMargin, placeholder, setData, providers, onSelect, data,
-  marginLeft,
+  marginLeft, password,
+  productHistory,
 }) => {
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     if (onSelect) onSelect(dateString);
@@ -72,6 +76,7 @@ export const InputSinve: React.FC<InputSinveProps> = ({
               width: '100%',
             }}
             onChange={onChange}
+            defaultValue={productHistory ? moment(productHistory, 'YYYY/MM/DD') : moment()}
           />
         )
       }
@@ -79,6 +84,7 @@ export const InputSinve: React.FC<InputSinveProps> = ({
         !isSelectDate && !isSelectable && (
           <SinveInput
             placeholder={placeholder}
+            type={password ? 'password' : 'text'}
             style={{
               width: '100%',
             }}

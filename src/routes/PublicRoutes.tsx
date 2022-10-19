@@ -1,7 +1,7 @@
-import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { RegisterProduct, Inventory, SalesPage } from '../pages';
+import LoginPage from '../pages/LoginPage';
 
 export const PublicRoutes = (): JSX.Element => (
   <Switch>
@@ -11,8 +11,11 @@ export const PublicRoutes = (): JSX.Element => (
     <Route path="/registrar-produto">
       <RegisterProduct />
     </Route>
-    <Route path="/">
+    <Route path="/inventory">
       <Inventory />
+    </Route>
+    <Route path="/">
+      <LoginPage />
     </Route>
   </Switch>
 );

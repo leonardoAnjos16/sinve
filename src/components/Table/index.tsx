@@ -124,7 +124,7 @@ export const TableComponent: React.FC<TableComponentProps> = ({
       auxData = data;
     }
     console.log(selectedCategory);
-    if (selectedCategory) {
+    if (selectedCategory && selectedCategory !== 'noFiltersChosen') {
       auxData = auxData.filter((element) => element.category === selectedCategory);
     }
 
@@ -136,7 +136,7 @@ export const TableComponent: React.FC<TableComponentProps> = ({
   }, [data]);
 
   const loadTypes = async () => {
-    const auxData: any[] = [];
+    const auxData: any[] = [{ label: 'Nenhum', value: 'noFiltersChosen' }];
     const auxKeys: any[] = [];
     // eslint-disable-next-line array-callback-return
     const wait = data.map((element) => {
