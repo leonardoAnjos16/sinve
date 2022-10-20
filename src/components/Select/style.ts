@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 interface ContainerProps {
-    width: string
-    withMargin?: boolean;
-    marginLeft?: string;
+  width: string
+  withMargin?: boolean;
+  marginLeft?: string;
 }
 
 interface RegisterProductProps {
-    isShowHistory?: boolean;
+  isShowHistory?: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -35,12 +35,9 @@ export const SinveInput = styled.input<RegisterProductProps>`
     height: ${(props) => (props.isShowHistory ? '40px' : '31px')};
     background-color: ${(props) => (props.isShowHistory ? 'transparent' : 'white')};
     border-radius: ${({ isShowHistory }) => (isShowHistory ? '8px' : '0px')};
+
     padding-left: 8px;
     -webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box;    
     box-sizing: border-box; 
-    ::placeholder{
-        color: ${({ theme }) => theme.colors.darkSeaGreen};
-        text-align: center;
-    }
 `;
