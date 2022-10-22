@@ -9,6 +9,7 @@ import { ShowProductHistory } from './ShowProductHistory';
 import { SalesPieChart } from './SalesPieChart';
 import { SalesBarChart } from './SalesBarChart';
 import { SalesAreaChart } from './SalesAreaChart';
+import { SuppliersTable } from './SuppliersTable';
 
 export {
   Navbar,
@@ -22,4 +23,5 @@ export {
   SalesPieChart,
   SalesBarChart,
   SalesAreaChart,
+  SuppliersTable,
 };
