@@ -16,7 +16,7 @@ const RegisterForm = () => {
       <RegisterFormWrapper>
         <InputSinve width="360px" placeholder="Nome" />
         <InputSinve width="360px" placeholder="Email" />
-        <InputSinve password width="360px" placeholder="Senha" />
+        <InputSinve type="password" width="360px" placeholder="Senha" />
         <InputSinve width="360px" placeholder="Telefone" />
         <VerificationCodeWrapper>
           <InputSinve width="222px" placeholder="Código de verificação" />

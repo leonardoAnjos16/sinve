@@ -31,7 +31,7 @@ const LoginForm = () => {
         <LoginInputLabel>
           <InputLogoHolder>
             <Lock />
-            <InputSinve password width="360px" placeholder="senha" />
+            <InputSinve type="password" width="360px" placeholder="senha" />
           </InputLogoHolder>
         </LoginInputLabel>
         <LoginFormSubMenu>
