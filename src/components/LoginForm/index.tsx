@@ -25,13 +25,13 @@ const LoginForm = () => {
         <LoginInputLabel>
           <InputLogoHolder>
             <AvatarOutlined />
-            <InputSinve width="360px" placeholder="email" />
+            <InputSinve width="360px" placeholder="email" login />
           </InputLogoHolder>
         </LoginInputLabel>
         <LoginInputLabel>
           <InputLogoHolder>
             <Lock />
-            <InputSinve type="password" width="360px" placeholder="senha" />
+            <InputSinve type="password" width="360px" placeholder="senha" login />
           </InputLogoHolder>
         </LoginInputLabel>
         <LoginFormSubMenu>

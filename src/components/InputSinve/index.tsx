@@ -27,12 +27,13 @@ interface InputSinveProps {
   marginLeft?: string;
   productHistory?: string;
   type?: string;
+  login?: boolean;
 }
 
 export const InputSinve: React.FC<InputSinveProps> = ({
   width, title, isSelectDate, isShowHistory, isSelectable,
   withMargin, placeholder, setData, providers, onSelect, data,
-  marginLeft, type,
+  marginLeft, type, login,
   productHistory,
 }) => {
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
@@ -83,6 +84,7 @@ export const InputSinve: React.FC<InputSinveProps> = ({
       {
         !isSelectDate && !isSelectable && (
           <SinveInput
+            login={login}
             placeholder={placeholder}
             type={type || 'text'}
             style={{

@@ -14,12 +14,12 @@ const RegisterForm = () => {
   return (
     <>
       <RegisterFormWrapper>
-        <InputSinve width="360px" placeholder="Nome" />
-        <InputSinve width="360px" placeholder="Email" />
-        <InputSinve type="password" width="360px" placeholder="Senha" />
-        <InputSinve width="360px" placeholder="Telefone" />
+        <InputSinve width="360px" placeholder="Nome" login />
+        <InputSinve width="360px" placeholder="Email" login />
+        <InputSinve type="password" width="360px" placeholder="Senha" login />
+        <InputSinve width="360px" placeholder="Telefone" login />
         <VerificationCodeWrapper>
-          <InputSinve width="222px" placeholder="Código de verificação" />
+          <InputSinve width="222px" placeholder="Código de verificação" login />
           <VerificationCodeButton>Solicitar</VerificationCodeButton>
         </VerificationCodeWrapper>
       </RegisterFormWrapper>
