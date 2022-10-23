@@ -306,7 +306,7 @@ export const SalesPage: React.FC = () => {
                               {val.category}
                             </td>
                             <td className="td_color">
-                              {(val.sold / totalSold) * 100}
+                              {Math.round((val.sold / totalSold) * 10000) / 100}
                               {' '}
                               %
                             </td>
