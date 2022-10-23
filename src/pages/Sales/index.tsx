@@ -13,16 +13,56 @@ import type { DataType } from '../../utils/typings/unionTypes';
 
 import './styles.css';
 
+const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
 export const SalesPage: React.FC = () => {
   const [selectedBarCategory, setBarCategory] = useState(0);
 
   const [productsPerCategory, setProductsPerCategory] = useState<DataType>('always');
   const [barChartData, setBarChartData] = useState<any[]>([]);
+
+  const [areaChartData, setAreaChartData] = useState<number[]>([]);
+  const [totalSalesLastMonth, setTotalSalesLastMonth] = useState<number>(0);
+
   const [pieChartData, setPieChartData] = useState<any[]>([]);
   const [totalAmount, setTotalAmount] = useState<any>();
   const [totalSold, setTotalSold] = useState<any>();
 
-  const [salesPerCategory, setSalesPerCategory] = useState<DataType>('always');
+  const [salesHistory, setSalesHistory] = useState<{month: string, year: string, perc: number}[]>();
+  const [dailySales, setDailySales] = useState<number>();
+
+  useEffect(() => {
+    const salesHistoryAux: {month: string, year: string, perc: number}[] = [];
+    const d = new Date();
+    const actualMonth = d.getMonth();
+    SalesAPI.getBilling()
+      .then((result) => {
+        result.forEach((salesPerMonth: number, index: number) => {
+          if (index === 2) setDailySales(salesPerMonth);
+          const salesDiff = salesPerMonth - result[result.length - 1];
+          const monthAux = actualMonth - (2 - index);
+          salesHistoryAux.push({
+            month: monthAux < 0 ? months[months.length + monthAux - 1] : months[monthAux],
+            year: monthAux < 0 ? (d.getFullYear() - 1).toString().substr(-2)
+              : d.getFullYear().toString().substr(-2),
+            perc: (salesDiff / (salesPerMonth || 1)) * 100,
+          });
+        });
+        setSalesHistory(salesHistoryAux);
+      });
+  }, []);
+
+  // Area Chart
+
+  useEffect(() => {
+    SalesAPI.getSalesPerDay()
+      .then((result) => {
+        setTotalSalesLastMonth(result.reduce((a: number, b: number) => a + b, 0));
+        setAreaChartData(result);
+      });
+  }, []);
+
+  // Bar Chart
 
   useEffect(() => {
     SalesAPI.getDataByCategory(productsPerCategory)
@@ -41,15 +81,6 @@ export const SalesPage: React.FC = () => {
           .reduce((prev, curr) => prev + curr, 0));
       });
   }, [productsPerCategory]);
-
-  // useEffect(() => {
-  // setTotalAmount(pieChartData.map((item) => item.amount).reduce((prev, curr) => prev + curr, 0));
-  // }, [productsPerCategory]);
-
-  console.log(pieChartData);
-  // console.log(barChartData);
-  // console.log(totalAmount);
-  // console.log(totalSold);
 
   const pieCharData = [
     {
@@ -114,9 +145,6 @@ export const SalesPage: React.FC = () => {
     },
   ];
 
-  const areaChartData = [30, 24, 22, 19, 13, 9, 11, 14, 17, 22, 26, 24, 21, 23, 21,
-    25, 30, 27, 18, 13, 9, 7, 13, 16, 11, 11, 17, 23, 20, 19];
-
   const [pieData, setPieData] = useState(pieCharData);
   const [pieAll, setPieAll] = useState(true);
   const [pieMonth, setPieMonth] = useState(false);
@@ -168,22 +196,58 @@ export const SalesPage: React.FC = () => {
             <div className="top">
               <section className="first">
                 <div className="first_div">
+                  {
+                  salesHistory?.length
+                  && (
                   <div className="inside_first">
                     <div className="title">
                       <h3>Setembro 2022</h3>
                       <InfoCircleOutlined />
                     </div>
-                    <h2>R$ 126,560</h2>
+                    <h2>
+                      {dailySales!.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                    </h2>
                     <div className="sale-by-time">
-                      <p> Em relação a Ago/22 12% </p>
-                      <CaretDownOutlined style={{ color: '#8B1A47' }} />
+                      <p>
+                        {' '}
+                        Em relação a
+                        {' '}
+                        {`${salesHistory![0].month}/${salesHistory![0].year}`}
+                        {' '}
+                        {`${Math.abs(salesHistory![0].perc)}%`}
+                        {' '}
+                      </p>
+                      {
+                        salesHistory![0].perc >= 0
+                          ? <CaretDownOutlined style={{ color: '#8B1A47' }} />
+                          : <CaretUpOutlined style={{ color: '#8DB580' }} />
+                      }
                     </div>
                     <div className="sale-by-time">
-                      <p>Em relação a Set/22 13%</p>
-                      <CaretUpOutlined style={{ color: '#8DB580' }} />
+                      <p>
+                        {' '}
+                        Em relação a
+                        {' '}
+                        {`${salesHistory![1].month}/${salesHistory![1].year}`}
+                        {' '}
+                        {`${Math.abs(salesHistory![1].perc)}%`}
+                        {' '}
+                      </p>
+                      {
+                        salesHistory![1].perc >= 0
+                          ? <CaretDownOutlined style={{ color: '#8B1A47' }} />
+                          : <CaretUpOutlined style={{ color: '#8DB580' }} />
+                      }
                     </div>
                   </div>
-                  <p className="vendas"> Venda diária $R$ 12,423</p>
+                  )
+                }
+                  <p className="vendas">
+                    {' '}
+                    Venda diária
+                    {' '}
+                    {(dailySales! / 30).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                  </p>
                 </div>
 
                 <div className="inside_second">
@@ -191,11 +255,15 @@ export const SalesPage: React.FC = () => {
                     <h3>Saída de produtos diária (últimos 30 dias)</h3>
                     <InfoCircleOutlined />
                   </div>
-                  <h2>39</h2>
+                  <h2>{areaChartData[areaChartData.length - 1]}</h2>
                   <div className="one_graph">
                     <SalesAreaChart data={areaChartData} />
                   </div>
-                  <p className="vendas">Saída de Produtos total (últimos 30 dias) 1,398</p>
+                  <p className="vendas">
+                    Saída de Produtos total (últimos 30 dias)
+                    {' '}
+                    {totalSalesLastMonth}
+                  </p>
                 </div>
               </section>
               <section className="second">

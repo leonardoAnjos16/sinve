@@ -13,4 +13,20 @@ export const SalesAPI = {
 
     return response.data;
   },
+  async getSalesPerDay() {
+    const response = await api.request({
+      url: '/vendas-por-dia',
+      method: 'GET',
+    });
+
+    return response.data;
+  },
+  async getBilling() {
+    const response = await api.request({
+      url: '/faturamento',
+      method: 'GET',
+    });
+
+    return response.data;
+  },
 };
