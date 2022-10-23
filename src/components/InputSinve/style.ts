@@ -7,6 +7,7 @@ interface ContainerProps {
 }
 
 interface RegisterProductProps {
+    login?: boolean;
     isShowHistory?: boolean;
 }
 
@@ -38,9 +39,14 @@ export const SinveInput = styled.input<RegisterProductProps>`
     padding-left: 8px;
     -webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box;    
-    box-sizing: border-box; 
-    ::placeholder{
-        color: ${({ theme }) => theme.colors.darkSeaGreen};
-        text-align: center;
+    box-sizing: border-box;
+    ::placeholder {
+        ${({ login, theme }) => (login ? `
+            color: ${theme.colors.darkSeaGreen};
+            text-align: center;
+        ` : `
+            color: black;
+            opacity: 25%;
+        `)}
     }
 `;
