@@ -24,7 +24,7 @@ import {
 export const RegisterProduct: React.FC = () => {
   const history = useHistory();
   const [showHistory, setShowHistory] = useState(false);
-  const [showProvider, setShowProvider] = useState(false);
+  const [showProvider, setShowProvider] = useState(true);
 
   const [code, setCode] = useState('');
   const [productName, setProductName] = useState('');
