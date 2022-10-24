@@ -56,7 +56,7 @@ const columns: ColumnsType<HistoryDataType> = [
     ),
   },
   {
-    title: 'Estoque Ideal',
+    title: 'Estoque Mínimo',
     dataIndex: 'idealInventory',
     key: 'idealInventory',
   },
