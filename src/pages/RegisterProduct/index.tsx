@@ -9,7 +9,16 @@ import { ShowProvider } from '../../components/ShowProvider';
 import { Entrance } from '../../interfaces/Entrance';
 import { Provider } from '../../interfaces/Provider';
 import {
-  RegisterContainer, Title, ProductContainer, TopProductContainer, Container, ButtonContainer,
+  RegisterContainer,
+  Title,
+  ProductContainer,
+  TopProductContainer,
+  Container,
+  ButtonContainer,
+  QuantityWrapper,
+  TitleIconButton,
+  Multiplier,
+  BoxUnitsWrapper,
 } from './style';
 
 export const RegisterProduct: React.FC = () => {
@@ -21,6 +30,8 @@ export const RegisterProduct: React.FC = () => {
   const [productName, setProductName] = useState('');
   const [category, setCategory] = useState('');
   const [quantity, setQuantity] = useState('');
+  const [boxes, setBoxes] = useState('');
+  const [units, setUnits] = useState('');
   const [inProduct, setInProduct] = useState('');
   const [validity, setValidity] = useState('');
   const [salePrice, setSalePrice] = useState('');
@@ -34,6 +45,7 @@ export const RegisterProduct: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
   const [allEntrances, setAllEntrances] = useState<Entrance[]>([]);
   const [entrancesToShow, setEntrancesToShow] = useState<Entrance[]>([]);
+  const [buttonText, setButtonText] = useState('Multiplicador');
 
   const didUserTapShowProductHistory = () => {
     setShowHistory(!showHistory);
@@ -104,6 +116,12 @@ export const RegisterProduct: React.FC = () => {
         dataEntrada: inProduct,
       };
 
+      if (buttonText === 'Multiplicador') {
+        produto.quantidade = Number(quantity);
+      } else {
+        produto.quantidade = Number(boxes) * Number(units);
+      }
+
       const fornecedor = {
         CNPJ: cnpj,
         nomeFantasia: providerName,
@@ -123,6 +141,14 @@ export const RegisterProduct: React.FC = () => {
     }
   };
 
+  const handleClick = () => {
+    if (buttonText === 'Multiplicador') {
+      setButtonText('Voltar');
+    } else {
+      setButtonText('Multiplicador');
+    }
+  };
+
   return (
     <Container>
       <Navbar />
@@ -132,7 +158,7 @@ export const RegisterProduct: React.FC = () => {
 
           <TopProductContainer>
             <InputSinve
-              width="18%"
+              width="25%"
               title="Código do item"
               withMargin
               placeholder="0000-0"
@@ -146,18 +172,46 @@ export const RegisterProduct: React.FC = () => {
               setData={setProductName}
             />
             <InputSinve
-              width="20%"
+              width="30%"
               title="Categoria"
               withMargin
+              placeholder="Papelaria"
               setData={setCategory}
             />
-            <InputSinve
-              width="20%"
-              title="Quantidade"
-              withMargin
-              placeholder="0"
-              setData={setQuantity}
-            />
+            <QuantityWrapper>
+              <TitleIconButton>
+                Quantidade
+                <Multiplier
+                  onClick={handleClick}
+                >
+                  {buttonText}
+                </Multiplier>
+              </TitleIconButton>
+              {buttonText === 'Multiplicador' ? (
+                <InputSinve
+                  width="259px"
+                  withMargin
+                  placeholder="1000"
+                  setData={setQuantity}
+                />
+              ) : (
+                <BoxUnitsWrapper>
+                  <InputSinve
+                    width="35%"
+                    withMargin
+                    placeholder="5 Caixas"
+                    setData={setBoxes}
+                  />
+                  X
+                  <InputSinve
+                    width="55%"
+                    withMargin
+                    placeholder="35 Unidades"
+                    setData={setUnits}
+                  />
+                </BoxUnitsWrapper>
+              )}
+            </QuantityWrapper>
           </TopProductContainer>
 
           <TopProductContainer>
@@ -182,14 +236,14 @@ export const RegisterProduct: React.FC = () => {
               title="Preço de Venda"
               withMargin
               setData={setSalePrice}
-              placeholder="0.0"
+              placeholder="R$ 0.00"
             />
             <InputSinve
               width="25%"
               title="Preço de Compra"
               withMargin
               setData={setPurchasePrice}
-              placeholder="0.0"
+              placeholder="R$ 0.00"
             />
           </TopProductContainer>
 

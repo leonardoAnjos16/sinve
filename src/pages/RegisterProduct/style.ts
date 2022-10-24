@@ -47,3 +47,39 @@ export const ButtonContainer = styled.div`
   align-items: center;
   justify-content: space-around;
 `;
+
+export const QuantityWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 260px;
+`;
+
+export const TitleIconButton = styled.div`
+  display: flex;
+  width: 100%;
+  font-size: 1.25rem;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const Multiplier = styled.button`
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: right;
+`;
+
+export const BoxUnitsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+`;
